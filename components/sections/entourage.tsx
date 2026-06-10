@@ -82,6 +82,7 @@ function mapStaticEntourage(): EntourageMember[] {
     if (group === "kate-family") category = "Parents of the Bride"
     if (group === "christian-family") category = "Parents of the Groom"
     if (group === "candle") category = "Candle Sponsors"
+    if (group === "veil") category = "Veil Sponsors"
     if (group === "cord") category = "Cord Sponsors"
     return { name, roleTitle: role, roleCategory: category, email: "" }
   })
@@ -701,7 +702,7 @@ export function Entourage() {
                             <div className="w-full max-w-md h-px" style={{ background: 'linear-gradient(to right, transparent, color-mix(in srgb, var(--color-motif-medium) 31%, transparent), transparent)' }}></div>
                           </div>
                         )}
-                        <TwoColumnLayout leftTitle="Best Men" rightTitle="Maid & Matron">
+                        <TwoColumnLayout leftTitle="Best Men" rightTitle="Maid of Honor">
                           {(() => {
                             const maxLen = Math.max(bestMan.length, maidOfHonor.length)
                             const rows = []
@@ -772,6 +773,47 @@ export function Entourage() {
                   return null
                 }
 
+                // Special handling for Ring Bearer and Coin Bearer - combine into single two-column layout
+                if (category === "Ring Bearer" || category === "Coin Bearer") {
+                  const ringBearers = grouped["Ring Bearer"] || []
+                  const coinBearers = grouped["Coin Bearer"] || []
+
+                  if (category === "Ring Bearer") {
+                    return (
+                      <div key="Bearers">
+                        {categoryIndex > 0 && (
+                          <div className="flex justify-center py-2 sm:py-2.5 md:py-3 mb-2 sm:mb-2.5 md:mb-3">
+                            <div className="w-full max-w-md h-px" style={{ background: 'linear-gradient(to right, transparent, color-mix(in srgb, var(--color-motif-medium) 31%, transparent), transparent)' }}></div>
+                          </div>
+                        )}
+                        <TwoColumnLayout leftTitle="Ring Bearer" rightTitle="Coin Bearer">
+                          {(() => {
+                            const maxLen = Math.max(ringBearers.length, coinBearers.length)
+                            const rows = []
+                            for (let i = 0; i < maxLen; i++) {
+                              const left = ringBearers[i]
+                              const right = coinBearers[i]
+                              rows.push(
+                                <React.Fragment key={`bearer-row-${i}`}>
+                                  <div className="px-1.5 sm:px-2 md:px-2.5">
+                                    {left ? <NameItem member={left} align="right" /> : <div className="py-0.5" />}
+                                  </div>
+                                  <div className="px-1.5 sm:px-2 md:px-2.5">
+                                    {right ? <NameItem member={right} align="left" /> : <div className="py-0.5" />}
+                                  </div>
+                                </React.Fragment>
+                              )
+                            }
+                            return rows
+                          })()}
+                        </TwoColumnLayout>
+                      </div>
+                    )
+                  }
+
+                  return null
+                }
+
                 // Special handling for Bridesmaids and Groomsmen - combine into single two-column layout
                 if (category === "Bridesmaids" || category === "Groomsmen") {
                   // Get both bridal party groups
@@ -825,12 +867,12 @@ export function Entourage() {
                   const firstPresentGroup = secondarySponsorGroups.find((g) => (grouped[g]?.length ?? 0) > 0)
                   if (category !== firstPresentGroup) return null
 
-                  const renderPairedGroup = (groupName: string) => {
-                    const grpMembers = grouped[groupName] || []
+                  const renderCandleSponsors = () => {
+                    const grpMembers = grouped["Candle Sponsors"] || []
                     if (grpMembers.length === 0) return null
                     return (
-                      <div key={groupName} className="mb-2 sm:mb-2.5 md:mb-3">
-                        <TwoColumnLayout singleTitle={groupName} centerContent={true}>
+                      <div key="Candle Sponsors" className="mb-2 sm:mb-2.5 md:mb-3">
+                        <TwoColumnLayout singleTitle="Candle Sponsors" centerContent={true}>
                           {grpMembers.length === 2 ? (
                             <>
                               <div className="px-1.5 sm:px-2 md:px-2.5">
@@ -844,11 +886,42 @@ export function Entourage() {
                             <div className="col-span-full">
                               <div className="max-w-sm mx-auto flex flex-col items-center gap-0.5 sm:gap-1 md:gap-1">
                                 {grpMembers.map((member, idx) => (
-                                  <NameItem key={`${groupName}-${idx}-${member.name}`} member={member} align="center" />
+                                  <NameItem key={`Candle Sponsors-${idx}-${member.name}`} member={member} align="center" />
                                 ))}
                               </div>
                             </div>
                           )}
+                        </TwoColumnLayout>
+                      </div>
+                    )
+                  }
+
+                  const renderVeilAndCordSponsors = () => {
+                    const veilMembers = grouped["Veil Sponsors"] || []
+                    const cordMembers = grouped["Cord Sponsors"] || []
+                    if (veilMembers.length === 0 && cordMembers.length === 0) return null
+
+                    const maxLen = Math.max(veilMembers.length, cordMembers.length)
+                    const rows = []
+                    for (let i = 0; i < maxLen; i++) {
+                      const left = veilMembers[i]
+                      const right = cordMembers[i]
+                      rows.push(
+                        <React.Fragment key={`veil-cord-row-${i}`}>
+                          <div className="px-1.5 sm:px-2 md:px-2.5">
+                            {left ? <NameItem member={left} align="right" /> : <div className="py-0.5" />}
+                          </div>
+                          <div className="px-1.5 sm:px-2 md:px-2.5">
+                            {right ? <NameItem member={right} align="left" /> : <div className="py-0.5" />}
+                          </div>
+                        </React.Fragment>
+                      )
+                    }
+
+                    return (
+                      <div key="VeilAndCordSponsors" className="mb-2 sm:mb-2.5 md:mb-3">
+                        <TwoColumnLayout leftTitle="Veil Sponsors" rightTitle="Cord Sponsors">
+                          {rows}
                         </TwoColumnLayout>
                       </div>
                     )
@@ -865,7 +938,8 @@ export function Entourage() {
                       <div className="mb-2 sm:mb-2.5 md:mb-3">
                         <SectionTitle>Secondary Sponsors</SectionTitle>
                       </div>
-                      {secondarySponsorGroups.map(renderPairedGroup)}
+                      {renderCandleSponsors()}
+                      {renderVeilAndCordSponsors()}
                     </div>
                   )
                 }
@@ -883,8 +957,6 @@ export function Entourage() {
                         const SINGLE_COLUMN_SECTIONS = new Set([
                           "Best Man",
                           "Maid of Honor",
-                          "Ring Bearer",
-                          "Coin Bearer",
                           "Bible Bearer",
                           "Flower Girls",
                           "Presider",
