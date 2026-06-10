@@ -166,7 +166,7 @@ export function Welcome() {
                   className={`${cinzel.className} text-base sm:text-lg md:text-xl tracking-[0.06em] sm:tracking-[0.08em]`}
                   style={{ color: "var(--color-motif-accent)" }}
                 >
-                  #NicsChapterWithPj
+                  #CristieAndMarkWedding
                 </p>
               </div>
 
