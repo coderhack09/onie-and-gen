@@ -10,7 +10,7 @@ export const siteConfig = {
     groom: "Mark Benedict C. Bundang", //Ltryl B. Benitez
     groomNickname: "Mark ",
     monogram:"/monogram/monogramn.png" ,//Ltryl
-    backgroundMusic:"/background_music/PALAGI (Wedding Version) - TJ Monterde  OFFICIAL AUDIO.mp3"
+    backgroundMusic:"/background_music/EastSide Reverie - Love Of A Lifetime (Soul Jazz Funk Cover Version).mp3"
   },
   googleAPI:{
     messageForm: "https://docs.google.com/forms/d/e/1FAIpQLSfq8PftPI4Y_MmLh8X8UAl0GjGUgnXrCeaRV4CdPNo1bs-8BQ/formResponse",   //done

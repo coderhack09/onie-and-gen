@@ -323,7 +323,7 @@ function ProposalAskSection({
             >
               <div className="relative h-full w-full sm:h-auto sm:aspect-[3/4] sm:translate-y-4 md:translate-y-6">
                 <Image
-                  src="/Details/guest.png"
+                  src="/Details/sponsors-new.png"
                   alt=""
                   fill
                   className="object-contain object-[right_center] drop-shadow-[0_20px_48px_rgba(15,28,63,0.14)] sm:object-bottom"
