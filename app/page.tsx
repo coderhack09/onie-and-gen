@@ -96,9 +96,9 @@ export default function Home() {
 
               <Countdown />
               <Gallery />
-              <VideoMessage />
-              <Messages />
+
               <Details />
+              <Registry />
               {/* <GuestInformation /> */}
               <WeddingPlaylist />
               <Entourage />
@@ -106,9 +106,9 @@ export default function Home() {
               <BookOfGuests />
               <WeddingTimeline />
               {/* <PrincipalSponsors /> */}
-              <FAQ />
-
-              <Registry />
+              {/* <FAQ /> */}
+              <VideoMessage />
+              <Messages />
               <SnapShare />
 
               <Footer />

@@ -43,7 +43,7 @@ export function LoveStory() {
         text={
           <>
             <p className="mb-4">
-            From classmates and friends to BF & GF for 11 years… now we say “I Do”! We first met sa PLV—same school pero different courses. From being classmates and friends, Mark couldn’t help but notice Cristie—especially her beautiful smile. 😍 During usual class days, her reporting, and even exams, she was all he could focus on! 😅
+            We first met at PLV during our first year in college as Biological Science students. As classmates, we shared classes, projects, and countless memories, and without realizing it, our story had already begun.
             </p>
            
           </>
@@ -59,7 +59,7 @@ export function LoveStory() {
         text={
           <>
             <p>
-            He even changed his course just to survive being around her. Hehehe. After graduation, we went on different paths and focused on our careers—Cristie working abroad and Mark staying in the country—but fate kept us connected.
+            Although life eventually took us on different paths, fate brought us back together in 2014. What started as friendship blossomed into love, and on April 27, 2015, we officially began our journey as boyfriend and girlfriend. ❤️
             </p>
           </>
         }
@@ -75,7 +75,7 @@ export function LoveStory() {
         text={
           <>
             <p>
-            In 2014, Mark finally approached Cristie—reconnecting as friends first, then slowly courting her. After one year of patience and persistence, on April 27, 2015, they officially became boyfriend and girlfriend. ❤️
+            Over the past 11 years, we have faced distance, challenges, and sacrifices, but each experience only strengthened our love, trust, and commitment to one another.
             </p>
            
           </>
@@ -90,7 +90,7 @@ export function LoveStory() {
         text={
           <>
             <p>
-            For 11 years, we navigated calls across time zones, nights apart, and countless sacrifices—but our love only grew stronger. Every challenge tested our patience, every distance deepened our trust, and every moment apart made us value each other even more.
+            And now, after 11 wonderful years together, we are excited to begin our greatest adventure yet. We can't wait to celebrate this special day and the start of our forever with all of you. 
             </p>
           </>
         }
@@ -106,9 +106,8 @@ export function LoveStory() {
         text={
           <>
             <p>
-            Through all the ups and downs, laughter and tears, we supported each other, celebrated the happy moments, and held each other through the saddest ones. And now, after 11 wonderful years together, we can’t wait to celebrate our marriage and the next chapter of our journey with you! 🎉💖
+            Together with our families, we invite you to witness as we say, "I do".
             </p>
-           
           </>
         }
       />
@@ -125,7 +124,6 @@ export function LoveStory() {
           <div className="absolute inset-0 rounded-sm bg-motif-soft opacity-0 group-hover:opacity-25 blur-md transition-opacity duration-300 -z-0"></div>
         </Link>
       </div>
-
     </div>
   );
 }

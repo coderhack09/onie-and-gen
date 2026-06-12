@@ -52,17 +52,17 @@ export const siteConfig = {
   },
   giftRegistry: {
     QR_1:{
-    id: "BPI",
-    src: "/QR/pleaseProvideQR.png",
-    label: "BPI",
-    accountNumber: " Please provide QR for the gift registry",
+    id: "BDO",
+    src: "/QR/BDO.png",
+    label: "BDO",
+    accountNumber: "CRISMARK: ********9097",
     },
-    QR_2:{
-    id: "GCash",
-    src: "/QR/pleaseProvideQR.png",
-    label: "GCash",
-    accountNumber: " Please provide QR for the gift registry",
-    }
+    // QR_2:{
+    // id: "GCash",
+    // src: "/QR/pleaseProvideQR.png",
+    // label: "GCash",
+    // accountNumber: " Please provide QR for the gift registry",
+    // }
   },
   ceremony: {
     location: "San Antonio De Padua Parish Church",
@@ -149,7 +149,7 @@ Now, as they prepare to say yes before God and the people they love most, Cather
     googleDriveLink:
       "https://drive.google.com/drive/folders/1Xi8R8Jq5t80bXyWBkd68su0YKIrMxZVp?usp=sharing",
     albumQR: "/QR/AlbumQR.png",
-    hashtag: ["#CristieAndMarkWedding"],
+    hashtag: ["#CristieHitsTheMark"],
     instructions: "Please scan this QR Code and upload the photos and videos you have taken during our wedding reception. We are delighted to see your snaps too!",
   },
 }

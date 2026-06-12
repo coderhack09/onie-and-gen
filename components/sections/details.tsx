@@ -685,6 +685,22 @@ export function Details() {
                           </div>
                           <div>
                             <p className={`${cinzel.className} text-left text-[10px] sm:text-[11px] uppercase tracking-[0.16em] font-medium text-motif-deep/65 mb-0.5`}>
+                            Sign Bearer for “Here Comes the Bride”:
+                            </p>
+                            <p className={`${cormorant.className} text-motif-deep text-left text-sm sm:text-base leading-snug sm:leading-relaxed`}>
+                            Pink / Beige 
+                            </p>
+                          </div>
+                          <div>
+                            <p className={`${cinzel.className} text-left text-[10px] sm:text-[11px] uppercase tracking-[0.16em] font-medium text-motif-deep/65 mb-0.5`}>
+                            Sign Bearer for “Here Comes the Groom”: 
+                            </p>
+                            <p className={`${cormorant.className} text-motif-deep text-left text-sm sm:text-base leading-snug sm:leading-relaxed`}>
+                            Burgundy / Beige 
+                            </p>
+                          </div>
+                          <div>
+                            <p className={`${cinzel.className} text-left text-[10px] sm:text-[11px] uppercase tracking-[0.16em] font-medium text-motif-deep/65 mb-0.5`}>
                             Flower Girls:
                             </p>
                             <p className={`${cormorant.className} text-motif-deep text-left text-sm sm:text-base leading-snug sm:leading-relaxed`}>

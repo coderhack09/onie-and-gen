@@ -121,19 +121,13 @@ export function VideoMessage() {
               style={{ color: "var(--color-motif-deep)" }}
             >
               <p>
-              As we prepare to receive the Sacrament of Holy Matrimony and begin this beautiful vocation together, we thank God for the many blessings He has entrusted to us—especially the gift of family and friends who have journeyed with us through the years.
+              As we prepare to begin our life together through the Sacrament of Holy Matrimony, we thank God for the gift of family and friends who have been part of our journey.
               </p>
               <p className="italic">
-              You are among those precious gifts, and your presence in our lives has been a source of joy, encouragement, and gra
+              You are one of those special blessings, and we would be honored if you could share a short video message for us. Your prayers, blessings, and well wishes will become cherished memories that we can look back on throughout our married life.
               </p>
               <p>
-              We would be deeply honored if you could share a short video message for us. Your words, prayers, blessings, and well wishes will become treasured memories that we can look back on throughout our married life—from our first days as husband and wife to the years when our hair has turned gray and our love has grown even deeper.
-              </p>
-              <p>
-              Your message will not only make our wedding day more meaningful, but it will also serve as a beautiful reminder of God's love reflected through the people He has placed in our lives.
-              </p>
-              <p>
-              Thank you for being part of our journey, for your prayers, and for the love and support you have shown us. May God bless you abundantly.
+              Thank you for your love, support, and prayers. May God bless you abundantly.
               </p>
             </div>
 
