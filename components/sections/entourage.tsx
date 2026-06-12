@@ -872,7 +872,7 @@ export function Entourage() {
                     if (grpMembers.length === 0) return null
                     return (
                       <div key="Candle Sponsors" className="mb-2 sm:mb-2.5 md:mb-3">
-                        <TwoColumnLayout singleTitle="Candle Sponsors" centerContent={true}>
+                        <TwoColumnLayout singleTitle="Candle" centerContent={true}>
                           {grpMembers.length === 2 ? (
                             <>
                               <div className="px-1.5 sm:px-2 md:px-2.5">
@@ -920,7 +920,7 @@ export function Entourage() {
 
                     return (
                       <div key="VeilAndCordSponsors" className="mb-2 sm:mb-2.5 md:mb-3">
-                        <TwoColumnLayout leftTitle="Veil Sponsors" rightTitle="Cord Sponsors">
+                        <TwoColumnLayout leftTitle="Veil" rightTitle="Cord">
                           {rows}
                         </TwoColumnLayout>
                       </div>
