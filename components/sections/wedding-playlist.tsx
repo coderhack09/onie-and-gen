@@ -27,7 +27,7 @@ export function WeddingPlaylist() {
       className="relative overflow-hidden bg-transparent py-12 sm:py-16 md:py-20"
     >
       {/* Corner floral decoration */}
-      <div className="absolute left-0 top-0 z-0 pointer-events-none">
+      {/* <div className="absolute left-0 top-0 z-0 pointer-events-none">
         <Image
           src="/decoration/flower-decoration-left-bottom-corner2.png"
           alt=""
@@ -46,7 +46,7 @@ export function WeddingPlaylist() {
           className="w-auto h-auto max-w-[120px] sm:max-w-[160px] md:max-w-[200px] opacity-50 scale-x-[-1]"
           priority={false}
         />
-      </div>
+      </div> */}
 
       <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 md:px-8">
         <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl md:rounded-[2rem] border border-motif-accent/30 bg-motif-cream shadow-[0_16px_60px_rgba(91,102,85,0.12)] px-4 sm:px-6 md:px-8 lg:px-10 py-8 sm:py-10 md:py-12">

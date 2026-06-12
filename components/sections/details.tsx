@@ -566,6 +566,17 @@ export function Details() {
                             </p>
                           </div>
                         </div>
+                      </div> <div>
+                        <p className={`${cinzel.className} text-left text-sm sm:text-base md:text-lg uppercase tracking-[0.18em] font-semibold text-motif-deep mb-3`}>
+                        Wedding Offertories
+                        </p>
+                        <div className="space-y-2.5">
+                          <div>
+                            <p className={`${cormorant.className} text-motif-deep text-left text-sm sm:text-base leading-snug sm:leading-relaxed`}>
+                            Navy Blue / Dark Blue
+                            </p>
+                          </div>
+                        </div>
                       </div>
 
                       {/* <div className="h-px bg-motif-silver/45" aria-hidden /> */}
