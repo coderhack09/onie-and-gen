@@ -5,16 +5,17 @@ import {
 
 export const siteConfig = {
   couple: {
-    bride: "Cristie B. Rocio ", //Noenyl Bryle M. Gonzaga
-    brideNickname: "Cristie", //Ltryl
-    groom: "Mark Benedict C. Bundang", //Ltryl B. Benitez
-    groomNickname: "Mark ",
-    monogram:"/monogram/monogramn.png" ,//Ltryl
-    backgroundMusic:"/background_music/EastSide Reverie - Love Of A Lifetime (Soul Jazz Funk Cover Version).mp3"
+    bride: "Genevive P. Grilla", //Noenyl Bryle M. Gonzaga
+    brideNickname: "Gen", //Ltryl
+    groom: "Ronillo C. Solomon", //Ltryl B. Benitez
+    groomNickname: "Onie",
+    monogram:"/monogram/mono.png" ,//Ltryl
+    backgroundMusic:"/background_music/CeCe Winans - Goodness of God (Official Video).mp3"
   },
   googleAPI:{
     messageForm: "https://docs.google.com/forms/d/e/1FAIpQLSfq8PftPI4Y_MmLh8X8UAl0GjGUgnXrCeaRV4CdPNo1bs-8BQ/formResponse",   //done
     message: "https://script.google.com/macros/s/AKfycbxESSpNeM-yr-YNtezPONjm4gQEn7rOGLuv-sRzk04HVhsEu25rcYqJMmK2dk-q0HGa/exec",  //done
+    rsvp: "https://script.google.com/macros/s/AKfycbwDiUwUOUkdL2P_9qVsxsYsy_rdrx8oTJ-ruvvYKxw_7VHvPCbLUJfpj0kUb2b4tG0F/exec",  //done
     guestList: "https://script.google.com/macros/s/AKfycbxMqfAigqLGPrpGEA2co_dDEMXmWCJeOExNkW3ectzVIKeWVTEeQw2LLDy4TJDG_bE/exec",  //done
     guestRequest: "https://script.google.com/macros/s/AKfycbzN3cu5g06lboH7eUNOh9TluOj7_hXE1bdzih9yd7mqNubBI4x9pLenZE-6FHcuJBCq/exec",   //done
     entourage: "https://script.google.com/macros/s/AKfycbyGriKcMzVPsRuzNYmpSpTjO-saO4PYqOqBLiLCj6f-PCHUjvBqakaAXdjobBlnKDkd/exec",  //done
@@ -25,9 +26,9 @@ export const siteConfig = {
     googleShare: "https://docs.google.com/spreadsheets/d/1ya7PdpiKDxF16ryjaEZuCKTkn4eGjE4qpryGfw4tq4U/edit?usp=sharing", 
   },
   wedding: {
-    date: "July 14, 2026 ",
-    time: "1:00 PM",
-    venue: "San Antonio De Padua Parish Church",
+    date: "July 18, 2026",
+    time: "2:30 PM",
+    venue: "Villa Nostra Vita Resort",
     tagline: "are getting married!",
     theme: "Our wedding palette is inspired by timeless elegance and warmth.Motif Colors: Champagne Gold, Soft Beige, Warm Soft Brown",
     motif: "#BBCED5, #B9C3A8, #F3D8C5, #D1C4D4, #ECD8BA, #F4E8D8, #E1DCCF",
@@ -41,13 +42,13 @@ export const siteConfig = {
   details: {
     rsvp: {
       deadline: "June 20, 2026",
-      contact: "Cristie B. Rocio ",
-      phone: "+63 960 250 0971",
+      contact: "Genevive P. Grilla ",
+      phone: "+63 956 799 3127",
     },
   },
   contact: {
-    bridePhone: "+63 960 250 0971",
-    groomPhone: "+63 915 511 3598",
+    bridePhone: "0956 799 3127",
+    groomPhone: "0969 014 8936.",
     email: "",
   },
   giftRegistry: {
@@ -65,18 +66,18 @@ export const siteConfig = {
     // }
   },
   ceremony: {
-    location: "San Antonio De Padua Parish Church",
-    venue: "San Antonio De Padua Parish Church, Pooc, Silang Cavite",
-    map: "https://maps.app.goo.gl/nEegxjzCjUftDxUM9",
-    date: "July 14, 2026 ",
-    day: "Tuesday",
-    time: "1:00 PM",
-    entourageTime: "12:00 PM",
-    guestsTime: "12:30 PM",
-    image: "/Details/ceremony.jpg",
+    location: "Villa Nostra Vita Resort",
+    venue: "0374 Mitay1, Contreras St., Brgy. Bagong Barrio, Pandi, Bulacan.",
+    map: "https://maps.app.goo.gl/PS5b1oxmqm48AgpX8",
+    date: "July 18, 2026 ",
+    day: "Saturday",
+    time: "2:30 PM",
+    entourageTime: "1:30 PM",
+    guestsTime: "2:00 PM",
+    image: "/Details/ceremony.png",
   },
   reception: {
-    location: "The Cana at Silang",
+    location: "Villa Nostra Vita Resort",
     venue: "The Cana at Silang, Cavite",
     map: "https://maps.app.goo.gl/g3gEnLMpLo6WqdoTA",
     date: "July 14, 2026 ",
@@ -91,22 +92,22 @@ export const siteConfig = {
       male: "Guests are kindly requested to wear attire in any of the shades within our wedding palette.Color pallet and image to be followed. STRICTLY no shorts, maong jeans, t-shirts, or slippers.",
       female: "Guests are kindly requested to wear attire in any of the shades within our wedding palette.Color pallet and image to be followed. STRICTLY no shorts, maong jeans, t-shirts, or slippers.",
       notes: "Your Presence will make our day even more special \n Ninong: Formal Wear : Charcoal Gray suid and Slacks, white long sleeves, and burgundy neckite \n Ninang: Long Dress / Formal Dress Burgundy Long Formal Dress.",
-      photo: "/Details/sponsors-new.png",
-      palette: "#555555, #999999, #ECDBCB "
+      photo: "/Details/guestAttire.png",
+      palette: "#E3D7CB, #D8C6AE, #C8B29B, #AD937C, #8C684E, #A09E85, #B98F65"
     },
     entourage: {
       gents: "Guests are kindly requested to wear attire in any of the shades within our wedding palette.Color pallet and image to be followed. STRICTLY no shorts, maong jeans, t-shirts, or slippers.",
       ladies: "Guests are kindly requested to wear attire in any of the shades within our wedding palette.Color pallet and image to be followed. STRICTLY no shorts, maong jeans, t-shirts, or slippers.",
       notes: "Your Presence will make our day even more special \n Ninong: Formal Wear : Charcoal Gray suid and Slacks, white long sleeves, and burgundy neckite \n Ninang: Long Dress / Formal Dress Burgundy Long Formal Dress.",
-      photo: "/Details/entourage-new.png",
-      palette: "#59111D, #9C2539, #555555, #999999, #E7CFCB, #F9F7EB",
+      photo: "/Details/guestAttire.png",
+      palette: "#E3D7CB, #D8C6AE, #C8B29B, #AD937C, #8C684E, #A09E85, #B98F65"
     },
     guests: {
-      gents: "Guests are kindly requested to wear attire in any of the shades within our wedding palette.Color pallet and image to be followed. STRICTLY no shorts, maong jeans, t-shirts, or slippers.",
-      ladies: "Guests are kindly requested to wear attire in any of the shades within our wedding palette.Color pallet and image to be followed. STRICTLY no shorts, maong jeans, t-shirts, or slippers.",
+      gents: "Wear elegant earth-toned attire in shades of beige, taupe, mocha, camel, or light brown. A linen or cotton polo, button-down shirt, or blazer paired with chinos or slacks is perfect. You may add a tie, pocket square, or suspenders for a refined rustic touch.",
+      ladies: "Wear flowy dresses in soft, neutral hues such as beige, champagne, nude, taupe, sand, or warm mocha. Choose light, graceful fabrics and simple accessories that reflect timeless elegance and natural beauty.",
       notes: "WE KINDLY ASK OUR GUEST TO WEAR THESE COLORS \n Gentlemen : Long sleeves / suit and slacks \n Ladies : Long Dress / Formal Dress",
-      photo: "/Details/guest-new.png",
-      palette: "#899780, #2B3959, #8092AA, #676767, #C07F63, #F9F7EB",
+      photo: "/Details/guestAttire.png",
+      palette: "#E3D7CB, #D8C6AE, #C8B29B, #AD937C, #8C684E, #A09E85, #B98F65"
     },
     note: "We kindly request our guests to dress in attire following our wedding palette."
   },
@@ -140,16 +141,17 @@ Now, as they prepare to say yes before God and the people they love most, Cather
   playlist: {
     title: "A Playlist from our hearts",
     subtitle: "Songs that have been part of our journey together",
-    playlistName: "Cristie and Mark Wedding",
+    playlistName: "Onie & Gen Wedding",
     embedUrl:
-      "https://open.spotify.com/embed/playlist/41OXrxTwaEIbeINhCwYJgq?utm_source=generator&si=2a9a99d614604de7",
-    spotifyUrl: "https://open.spotify.com/playlist/41OXrxTwaEIbeINhCwYJgq",
+      "https://open.spotify.com/embed/playlist/5OaUxRae1lojCdDF4pFWkR?utm_source=generator&si=1f60d98bfb9645f0",
+    spotifyUrl:
+      "https://open.spotify.com/playlist/5OaUxRae1lojCdDF4pFWkR",
   },
   snapShare: {
     googleDriveLink:
       "https://drive.google.com/drive/folders/1Xi8R8Jq5t80bXyWBkd68su0YKIrMxZVp?usp=sharing",
     albumQR: "/QR/AlbumQR.png",
-    hashtag: ["#CristieHitsTheMark"],
+    hashtag: ["#GenHitsTheOnie"],
     instructions: "Please scan this QR Code and upload the photos and videos you have taken during our wedding reception. We are delighted to see your snaps too!",
   },
 }

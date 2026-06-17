@@ -1,7 +1,6 @@
 import MasonryGallery from "@/components/masonry-gallery"
 import { getSiteConfig } from "@/lib/site-config"
-import { CloudinaryImage } from "@/components/ui/cloudinary-image"
-import { fetchGalleryImages } from "@/lib/fetch-gallery-images"
+import Image from "next/image"
 import { Cinzel, Cormorant_Garamond } from "next/font/google"
 
 const cinzel = Cinzel({
@@ -14,25 +13,52 @@ const cormorant = Cormorant_Garamond({
   weight: ["400", "500", "600"],
 })
 
-// Palette lives in globals.css → @theme inline → --color-motif-*
 const GALLERY_DECO_FILTER = ""
 
-export const revalidate = 3600
+// All local couple photos — desktop (landscape) + mobile (portrait)
+const desktopImages = Array.from({ length: 10 }, (_, i) => ({
+  src: `/desktop-background/couple (${i + 1}).png`,
+  category: "desktop" as const,
+  width: 1200,
+  height: 900,
+  orientation: "landscape" as const,
+}))
+
+const mobileImages = Array.from({ length: 25 }, (_, i) => ({
+  src: `/mobile-background/couple (${i + 1}).png`,
+  category: "mobile" as const,
+  width: 900,
+  height: 1200,
+  orientation: "portrait" as const,
+}))
+
+type GalleryImage = {
+  src: string
+  category: "desktop" | "mobile" | "front" | "gallery"
+  width: number
+  height: number
+  orientation: "portrait" | "landscape"
+}
+
+// Interleave desktop and mobile so the masonry grid looks balanced
+function interleave(a: GalleryImage[], b: GalleryImage[]): GalleryImage[] {
+  const result: GalleryImage[] = []
+  const max = Math.max(a.length, b.length)
+  for (let i = 0; i < max; i++) {
+    if (i < a.length) result.push(a[i])
+    if (i < b.length) result.push(b[i])
+  }
+  return result
+}
+
+const allImages = interleave(desktopImages, mobileImages)
 
 export default async function GalleryPage() {
   const siteConfig = await getSiteConfig()
-  const allImages = await fetchGalleryImages()
-  const images = allImages.map((src) => ({
-    src,
-    category: "gallery" as const,
-    width: 1200,
-    height: 900,
-    orientation: "landscape" as const,
-  }))
 
   return (
     <main className="min-h-screen relative overflow-hidden bg-motif-cream">
-      {/* Layered background — matches homepage gallery section */}
+      {/* Layered background */}
       <div className="absolute inset-0 -z-10 pointer-events-none" aria-hidden>
         <div
           className="absolute inset-0 opacity-[0.25]"
@@ -50,57 +76,25 @@ export default async function GalleryPage() {
         />
       </div>
 
-      {/* Flower decoration - top left corner */}
-      <div className="absolute left-0 top-0 z-0 pointer-events-none">
-        <CloudinaryImage
-          src="/decoration/flower-decoration-left-bottom-corner2.png"
-          alt=""
-          width={300}
-          height={300}
-          className="w-auto h-auto max-w-[140px] sm:max-w-[180px] md:max-w-[220px] lg:max-w-[260px] opacity-25 scale-y-[-1]"
-          priority={false}
-          style={{ filter: GALLERY_DECO_FILTER }}
-        />
-      </div>
-
-      {/* Flower decoration - top right corner */}
-      <div className="absolute right-0 top-0 z-0 pointer-events-none">
-        <CloudinaryImage
-          src="/decoration/flower-decoration-left-bottom-corner2.png"
-          alt=""
-          width={300}
-          height={300}
-          className="w-auto h-auto max-w-[140px] sm:max-w-[180px] md:max-w-[220px] lg:max-w-[260px] opacity-25 scale-x-[-1] scale-y-[-1]"
-          priority={false}
-          style={{ filter: GALLERY_DECO_FILTER }}
-        />
-      </div>
-
-      {/* Flower decoration - left bottom corner */}
-      <div className="absolute left-0 bottom-0 z-0 pointer-events-none">
-        <CloudinaryImage
-          src="/decoration/flower-decoration-left-bottom-corner2.png"
-          alt=""
-          width={300}
-          height={300}
-          className="w-auto h-auto max-w-[140px] sm:max-w-[180px] md:max-w-[220px] lg:max-w-[260px] opacity-25"
-          priority={false}
-          style={{ filter: GALLERY_DECO_FILTER }}
-        />
-      </div>
-
-      {/* Flower decoration - right bottom corner */}
-      <div className="absolute right-0 bottom-0 z-0 pointer-events-none">
-        <CloudinaryImage
-          src="/decoration/flower-decoration-left-bottom-corner2.png"
-          alt=""
-          width={300}
-          height={300}
-          className="w-auto h-auto max-w-[140px] sm:max-w-[180px] md:max-w-[220px] lg:max-w-[260px] opacity-25 scale-x-[-1]"
-          priority={false}
-          style={{ filter: GALLERY_DECO_FILTER }}
-        />
-      </div>
+      {/* Corner flower decorations */}
+      {[
+        "absolute left-0 top-0 scale-y-[-1]",
+        "absolute right-0 top-0 scale-x-[-1] scale-y-[-1]",
+        "absolute left-0 bottom-0",
+        "absolute right-0 bottom-0 scale-x-[-1]",
+      ].map((cls, i) => (
+        <div key={i} className={`${cls} z-0 pointer-events-none`}>
+          <Image
+            src="/decoration/flower-decoration-left-bottom-corner2.png"
+            alt=""
+            width={300}
+            height={300}
+            className="w-auto h-auto max-w-[140px] sm:max-w-[180px] md:max-w-[220px] lg:max-w-[260px] opacity-25"
+            priority={false}
+            style={{ filter: GALLERY_DECO_FILTER }}
+          />
+        </div>
+      ))}
 
       <section className="relative z-10 max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-8 sm:py-16">
         <div className="text-center mb-6 sm:mb-8 md:mb-10 px-3 sm:px-4">
@@ -120,8 +114,7 @@ export default async function GalleryPage() {
           <p
             className={`${cormorant.className} text-xs sm:text-sm md:text-base lg:text-lg font-light max-w-xl mx-auto leading-relaxed px-2 text-motif-medium`}
           >
-            Every photograph tells a story of {siteConfig.couple.groomNickname} & {siteConfig.couple.brideNickname}'s journey to
-            forever
+            Every photograph tells a story of {siteConfig.couple.groomNickname} &amp; {siteConfig.couple.brideNickname}&apos;s journey to forever
           </p>
 
           <div className="flex items-center justify-center gap-2 mt-3 sm:mt-4">
@@ -131,23 +124,7 @@ export default async function GalleryPage() {
           </div>
         </div>
 
-        {images.length === 0 ? (
-          <div className={`${cormorant.className} text-center text-motif-medium`}>
-            <p className="font-light">
-              No images found. Upload photos to your Cloudinary{" "}
-              <code className="px-2 py-1 rounded border bg-motif-accent/10 border-motif-accent/40 text-motif-deep">
-                gallery
-              </code>
-              {" "}folder or add paths to{" "}
-              <code className="px-2 py-1 rounded border bg-motif-accent/10 border-motif-accent/40 text-motif-deep">
-                content/gallery-images.ts
-              </code>
-              .
-            </p>
-          </div>
-        ) : (
-          <MasonryGallery images={images} />
-        )}
+        <MasonryGallery images={allImages} />
       </section>
     </main>
   )

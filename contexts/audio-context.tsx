@@ -15,10 +15,8 @@ export function AudioProvider({ children }: { children: ReactNode }) {
   const interruptedByExternalRef = useRef(false)
 
   const pauseMusic = useCallback(() => {
-    if (audioRef.current && !audioRef.current.paused) {
-      interruptedByExternalRef.current = true
-      audioRef.current.pause()
-    }
+    interruptedByExternalRef.current = true
+    audioRef.current?.pause()
   }, [])
 
   const resumeMusic = useCallback(() => {

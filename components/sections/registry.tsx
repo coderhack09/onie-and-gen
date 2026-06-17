@@ -52,48 +52,7 @@ Monetary gift is the one we suggest.
 
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6">
   {/* GCASH QR toggle */}
-  <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 mb-6 sm:mb-8">
-        {/* <h3 className={`${cinzel.className} text-xl sm:text-2xl md:text-3xl font-normal text-motif-cream text-center mb-4 sm:mb-6`}>
-          GCASH
-        </h3> */}
-        <div className="flex flex-col items-center gap-4 sm:gap-6">
-          <div className="inline-flex rounded-lg border border-motif-cream/40 bg-motif-cream/5 p-1">
-            {gcashQr.map((item) => (
-              <button
-                key={item.id}
-                type="button"
-                onClick={() => setActiveQr(item.id)}
-                className={`px-4 sm:px-6 py-2 rounded-md text-sm font-medium transition-all ${
-                  activeQr === item.id
-                    ? "bg-motif-cream/20 text-motif-cream"
-                    : "text-motif-cream/80 hover:text-motif-cream hover:bg-motif-cream/10"
-                }`}
-              >
-                {item.label}
-              </button>
-            ))}
-          </div>
-          <div className="flex flex-col items-center">
-            <div className="relative w-52 h-52 sm:w-60 sm:h-60 md:w-72 md:h-72 rounded-xl overflow-hidden bg-white shadow-lg">
-            <Image
-              src={activeItem.src}
-              alt={`QR code - ${activeItem.label}`}
-              fill
-              className="object-contain p-2"
-              sizes="(max-width: 640px) 208px, (max-width: 768px) 240px, 288px"
-            />
-          </div>
-            <div className="mt-3 sm:mt-4 w-full max-w-md text-center">
-              <p className="text-[11px] sm:text-xs tracking-[0.18em] uppercase text-motif-cream/70">
-                Account Number
-              </p>
-              <p className={`${cinzel.className} mt-1 text-sm sm:text-base text-motif-cream drop-shadow-sm`}>
-                {activeItem.accountNumber}
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+
 
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6">
         <div className="text-center">

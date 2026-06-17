@@ -3,12 +3,18 @@
 import React from 'react';
 import Link from 'next/link';
 import { StorySection } from '@/components/StorySection';
-import { Cinzel } from "next/font/google";
+import { Cinzel, Cormorant_Garamond } from "next/font/google";
 import { siteConfig } from '@/content/site';
 
 const cinzel = Cinzel({
   subsets: ["latin"],
-  weight: "400",
+  weight: ["400", "600"],
+})
+
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["300", "400", "500"],
+  style: ["normal", "italic"],
 })
 
 // Palette lives in globals.css → @theme inline → --color-motif-*
@@ -18,18 +24,36 @@ export function LoveStory() {
   return (
     <div className="min-h-screen bg-motif-cream overflow-x-hidden">
 
+      <div className="text-center z-0 relative px-6 pt-14 sm:pt-18 md:pt-20 pb-4">
+        {/* Eyebrow label */}
+        <p
+          className={`${cinzel.className} text-[0.55rem] sm:text-[0.6rem] tracking-[0.45em] uppercase mb-4 sm:mb-5`}
+          style={{ color: 'var(--color-motif-medium)', letterSpacing: '0.42em' }}
+        >
+          Our Story
+        </p>
 
-      <div className="text-center text-motif-medium z-0 relative px-4">
-        <div className="w-12 sm:w-16 h-[1px] bg-motif-silver mx-auto mb-4 sm:mb-6 opacity-60"></div>
+        {/* Main title — Great Vibes script */}
         <h1
-           className="lighten-regular text-[32px] sm:text-[40px] md:text-[48px] lg:text-[56px] xl:text-[64px] leading-tight"
-           style={{ fontFamily: "var(--font-playlist-script), cursive", color: 'var(--color-motif-deep)' }}
-          >
-          Our Love Story
-          </h1>
+          className="text-[34px] sm:text-[42px] md:text-[52px] lg:text-[60px] xl:text-[68px] leading-[1.15] mb-3 sm:mb-4"
+          style={{
+            fontFamily: "var(--font-brittany), cursive",
+            color: 'var(--color-motif-deep)',
+            textShadow: '0 2px 12px rgba(166,132,106,0.22), 0 1px 0 rgba(166,132,106,0.08)',
+          }}
+        >
+          A Love Story Anchored in Grace
+        </h1>
 
-        <p className={`${cinzel.className} text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl tracking-[0.14em] sm:tracking-[0.18em] font-normal leading-tight text-motif-medium mb-1`}>
-        “11 Years of Love, Now Forever”
+        {/* Thin rule */}
+        <div className="w-16 sm:w-20 h-[1px] bg-motif-silver opacity-45 mx-auto mb-4 sm:mb-5" />
+
+        {/* Sub-tagline — Cormorant italic */}
+        <p
+          className={`${cormorant.className} text-[1rem] sm:text-[1.1rem] md:text-[1.2rem] font-light leading-relaxed mb-2`}
+          style={{ color: 'var(--color-motif-medium)', fontStyle: 'italic', letterSpacing: '0.03em' }}
+        >
+          A journey of faith, healing, and a love shaped by God&apos;s perfect timing.
         </p>
       </div>
 
@@ -38,14 +62,22 @@ export function LoveStory() {
         theme="light"
         layout="image-left"
         isFirst={true}
-        title="From Friends to Lovers"
-        imageSrc="/mobile-background/couple (2).webp"
+        title="WHEN THEIR PATHS FIRST CROSSED"
+        imageSrc="/mobile-background/couple (19).png"
         text={
           <>
             <p className="mb-4">
-            We first met at PLV during our first year in college as Biological Science students. As classmates, we shared classes, projects, and countless memories, and without realizing it, our story had already begun.
+            Their story began at a time when life felt uncertain.
             </p>
-           
+            <p>
+            She was not whole, carrying pain, frustration, and a quiet distance from the Lord. Yet in that very season, she met Onie.
+            </p>
+            <p>
+            A year older, and single at the time, Onie chose to love Gen fully. Not just the good parts, but even the broken pieces. He embraced her for who she was, and for everything she carried.
+            </p>
+            <p>
+            And in that space of acceptance, something beautiful began to grow.
+            </p>
           </>
         }
       />
@@ -54,12 +86,22 @@ export function LoveStory() {
       <StorySection
         theme="dark"
         layout="image-right"
-        imageSrc="/mobile-background/couple (1).webp"
-        // title="Became a Couple (2019)"
+        imageSrc="/mobile-background/couple (8).png"
+        title="A LOVE TRANSFORMED BY FAITH"
         text={
           <>
+            <p className="mb-4">
+            Their relationship did not begin in perfect conditions. It was shaped in the middle of real-life struggles, where love had to be patient, understanding, and forgiving.
+            </p>
             <p>
-            Although life eventually took us on different paths, fate brought us back together in 2014. What started as friendship blossomed into love, and on April 27, 2015, we officially began our journey as boyfriend and girlfriend. ❤️
+            But something beautiful unfolded along the way, Onie came to know the Lord. And together, they made a decision that would define their relationship which is to honor God, and to build a love that reflects His will.
+            </p>
+            <p>
+            It wasn’t perfect.
+            <br />
+            But it was real.
+            <br />
+            And it was surrendered.
             </p>
           </>
         }
@@ -70,14 +112,22 @@ export function LoveStory() {
         theme="light"
         layout="image-left"
         isLast={true}
-        imageSrc="/mobile-background/couple (3).webp"
-        // title="The Proposal (2025)"
+        imageSrc="/mobile-background/couple (10).png"
+        title="THE WAITING SEASON & THE TEST OF FAITH"
         text={
           <>
-            <p>
-            Over the past 11 years, we have faced distance, challenges, and sacrifices, but each experience only strengthened our love, trust, and commitment to one another.
+            <p className="mb-4">
+            In 2019, they stepped out in faith and began a long and difficult journey toward freedom and restoration. Delays, waiting, and painful seasons tested them deeply, but through every moment, God remained faithful.
             </p>
-           
+            <p>
+            For her, this season was deeply painful. It meant revisiting the past, memories that reopened wounds and brought moments of heaviness and struggle.
+            </p>
+            <p>
+            But even there… God was present.
+            </p>
+            <p>
+            He was gently teaching her to let go, to trust, and to place everything in His hands.
+            </p>
           </>
         }
       />
@@ -85,12 +135,22 @@ export function LoveStory() {
             <StorySection
         theme="dark"
         layout="image-right"
-        imageSrc="/mobile-background/couple (4).webp"
-        // title="Became a Couple (2019)"
+        imageSrc="/mobile-background/couple (25).png"
+        title="HELD TOGETHER BY GRACE"
         text={
           <>
+            <p className="mb-4">
+            Through every challenge, they held on, not just to each other, but to God.
+            </p>
             <p>
-            And now, after 11 wonderful years together, we are excited to begin our greatest adventure yet. We can't wait to celebrate this special day and the start of our forever with all of you. 
+            They prayed together.
+            <br />
+            They waited together.
+            <br />
+            They trusted God together.
+            </p>
+            <p>
+            And through every season, it was not their strength that sustained them, but His grace.
             </p>
           </>
         }
@@ -101,17 +161,29 @@ export function LoveStory() {
         theme="light"
         layout="image-left"
         isLast={true}
-        imageSrc="/mobile-background/couple (5).webp"
-        // title="The Proposal (2025)"
+        imageSrc="/mobile-background/couple (6).png"
+        title="A PROMISE FULFILLED IN GOD'S TIME"
         text={
           <>
+            <p className="mb-4">
+            Now, after 15 years of shared joys and trials, they stand not just as two people in love…
+            </p>
             <p>
-            Together with our families, we invite you to witness as we say, "I do".
+            …but as a testimony.
+            </p>
+            <p>
+            A testimony of faith.
+Of healing.
+Of a love that endured, surrendered, and was made whole in God’s perfect time.
+            </p>
+            <p>
+            Because when love is placed in God’s hands,
+every delay has a purpose…
+and every promise is fulfilled according to His will.
             </p>
           </>
         }
       />
-      
       {/* Footer Decoration */}
       <div className="bg-motif-cream pt-8 sm:pt-10 md:pt-12 pb-16 sm:pb-20 md:pb-24 text-center text-motif-deep z-0 relative px-4">
         <div className="w-12 sm:w-16 h-[1px] bg-motif-silver mx-auto mb-4 sm:mb-6 opacity-60"></div>

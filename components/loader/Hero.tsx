@@ -37,19 +37,19 @@ const hex = {
 
 
 const desktopImages: string[] = [
-  '/desktop-background/couple (1).webp',
-  '/desktop-background/couple (2).webp',
-  '/desktop-background/couple (3).webp',
-  '/desktop-background/couple (4).webp',
-  '/desktop-background/couple (5).webp',
+  '/desktop-background/couple (1).png',
+  '/desktop-background/couple (2).png',
+  '/desktop-background/couple (3).png',
+  '/desktop-background/couple (4).png',
+  '/desktop-background/couple (5).png',
 ];
 
 const mobileImages: string[] = [
-'/mobile-background/couple (1).webp',
-'/mobile-background/couple (2).webp',
-'/mobile-background/couple (3).webp',
-'/mobile-background/couple (4).webp',
-'/mobile-background/couple (5).webp',
+'/mobile-background/couple (4).png',
+'/mobile-background/couple (5).png',
+'/mobile-background/couple (18).png',
+'/mobile-background/couple (22).png',
+'/mobile-background/couple (24).png',
 ];
 
 export const Hero: React.FC<HeroProps> = ({ onOpen, visible }) => {
@@ -138,8 +138,8 @@ export const Hero: React.FC<HeroProps> = ({ onOpen, visible }) => {
           style={{
             background: `linear-gradient(
               to bottom,
-              rgba(${hex.deep}, 0.30) 0%,
-              rgba(${hex.accent}, 0.12) 35%,
+              rgba(${hex.deep}, 0.15) 0%,
+              rgba(${hex.accent}, 0.06) 35%,
               transparent 60%
             )`
           }}
@@ -151,9 +151,9 @@ export const Hero: React.FC<HeroProps> = ({ onOpen, visible }) => {
           style={{
             background: `linear-gradient(
               to top,
-              rgba(${hex.deep}, 0.72) 0%,
-              rgba(${hex.medium}, 0.38) 30%,
-              rgba(${hex.deep}, 0.10) 55%,
+              rgba(${hex.deep}, 0.45) 0%,
+              rgba(${hex.medium}, 0.20) 30%,
+              rgba(${hex.deep}, 0.05) 55%,
               transparent 70%
             )`
           }}
@@ -165,9 +165,9 @@ export const Hero: React.FC<HeroProps> = ({ onOpen, visible }) => {
           style={{
             background: `radial-gradient(
               ellipse at center,
-              transparent 30%,
-              rgba(${hex.medium}, 0.18) 65%,
-              rgba(${hex.deep}, 0.32) 100%
+              transparent 40%,
+              rgba(${hex.medium}, 0.09) 70%,
+              rgba(${hex.deep}, 0.16) 100%
             )`
           }}
         />

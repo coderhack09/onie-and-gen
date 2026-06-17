@@ -7,7 +7,7 @@ import type { SiteConfig } from "@/lib/site-config"
 import { MapPin } from "lucide-react"
 import { motion } from "motion/react"
 import { Cormorant_Garamond, Cinzel } from "next/font/google"
-import { CloudinaryImage } from "@/components/ui/cloudinary-image"
+import Image from "next/image"
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -25,7 +25,7 @@ const TIMELINE_TEXT = "var(--color-motif-cream)"
 // SVG stroke — CSS vars are not valid SVG attributes
 const TIMELINE_SVG_STROKE = "#FFFFFF"
 // White tint for corner florals — section sits on dark background
-const DECO_FILTER_WHITE = "brightness(0) saturate(100%) invert(1)"
+const DECO_FILTER_WHITE = ""
 
 type TimelineIcon = React.ComponentType<React.SVGProps<SVGSVGElement>>
 
@@ -44,52 +44,52 @@ function buildTimelineEvents(siteConfig: SiteConfig): TimelineEvent[] {
 
   return [
   {
-    time: `12:30 PM`,
-    title: "Guest Arrival",
+    time: `2:00 PM`,
+    title: "Guest Arrival & Seating",
     // description: "Guests are kindly requested to arrive and be seated.Our wedding ceremony will begin promptly at 2:00 PM. To preserve the solemnity of the occasion, we ask that everyone be seated at 1:30pm before the ceremony begins.",
     location: `${siteConfig.ceremony.location}`,
     icon: GuestsIcon,
     imageSrc: "/weddingtimeline/arrivalimage.png",
   },  
   {
-    time: `1:00 PM`,
-    title: "Wedding Ceremony",
+    time: `2:30 PM`,
+    title: "Pre-Ceremony / Processional",
     location: `${siteConfig.ceremony.location}`,
     icon: RingsIcon,
     imageSrc: "/weddingtimeline/WeddingCeremony.png",
   },
   {
-    time: `3:00 PM`,
-    title: "Post-Nuptial Pictorial",
+    time: `5:00 PM`,
+    title: "Photo Session Transition",
     location: `${siteConfig.ceremony.location}`,
     icon: RingsIcon,
     imageSrc: "/weddingtimeline/PhotoSession.png",
   },
+  // {
+  //   time: `4:00 PM`,
+  //   title: "Cocktail Hour",
+  //   location: receptionVenue,
+  //   icon: CocktailIcon,
+  //   imageSrc: "/weddingtimeline/CockTailHour.png",
+  // },
+  // {
+  //   time: "4:45 PM",
+  //   title: "Reception Program",
+  //   location: receptionVenue,
+  //   icon: FireworksIcon,
+  //   imageSrc: "/weddingtimeline/reception welcom.png",
+  // },
   {
-    time: `4:00 PM`,
-    title: "Cocktail Hour",
-    location: receptionVenue,
-    icon: CocktailIcon,
-    imageSrc: "/weddingtimeline/CockTailHour.png",
-  },
-  {
-    time: "4:45 PM",
-    title: "Reception Program",
-    location: receptionVenue,
-    icon: FireworksIcon,
-    imageSrc: "/weddingtimeline/reception welcom.png",
-  },
-  {
-    time: "6:00 PM",
-    title: "Dinner",
-    location: receptionVenue,
+    time: "6:30 PM ",
+    title: "Early Dinner & Celebration",
+    location: `${siteConfig.ceremony.location}`,
     icon: DinnerIcon,
     imageSrc: "/weddingtimeline/DinnerService.png",
   },
   {
-    time: "7:00 PM",
-    title: "Party",
-    location: receptionVenue,
+    time: "8:00 PM",
+    title: "Closing Blessings & Fond Farewell",
+    location: `${siteConfig.ceremony.location}`,
     icon: DanceIcon,
     imageSrc: "/weddingtimeline/SendOff.png",
   },
@@ -106,7 +106,7 @@ export function WeddingTimeline() {
     >
       {/* Corner floral decoration - white */}
       <div className="absolute inset-0 pointer-events-none z-[1]">
-        <CloudinaryImage
+        <Image
           src="/decoration/flower-decoration-left-bottom-corner2.png"
           alt=""
           width={300}
@@ -115,7 +115,7 @@ export function WeddingTimeline() {
           style={{ transform: "scaleY(-1)", filter: DECO_FILTER_WHITE }}
           priority={false}
         />
-        <CloudinaryImage
+        <Image
           src="/decoration/flower-decoration-left-bottom-corner2.png"
           alt=""
           width={300}
@@ -124,7 +124,7 @@ export function WeddingTimeline() {
           style={{ transform: "scaleX(-1) scaleY(-1)", filter: DECO_FILTER_WHITE }}
           priority={false}
         />
-        <CloudinaryImage
+        <Image
           src="/decoration/flower-decoration-left-bottom-corner2.png"
           alt=""
           width={300}
@@ -133,7 +133,7 @@ export function WeddingTimeline() {
           style={{ filter: DECO_FILTER_WHITE }}
           priority={false}
         />
-        <CloudinaryImage
+        <Image
           src="/decoration/flower-decoration-left-bottom-corner2.png"
           alt=""
           width={300}
@@ -346,7 +346,7 @@ function IconMark({
 }) {
   if (imageSrc) {
     return (
-      <CloudinaryImage
+      <Image
         src={imageSrc}
         alt=""
         width={96}
