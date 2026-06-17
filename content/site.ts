@@ -13,17 +13,17 @@ export const siteConfig = {
     backgroundMusic:"/background_music/CeCe Winans - Goodness of God (Official Video).mp3"
   },
   googleAPI:{
-    messageForm: "https://docs.google.com/forms/d/e/1FAIpQLSfq8PftPI4Y_MmLh8X8UAl0GjGUgnXrCeaRV4CdPNo1bs-8BQ/formResponse",   //done
-    message: "https://script.google.com/macros/s/AKfycbxESSpNeM-yr-YNtezPONjm4gQEn7rOGLuv-sRzk04HVhsEu25rcYqJMmK2dk-q0HGa/exec",  //done
+    messageForm: "https://docs.google.com/forms/d/e/1FAIpQLScHQG10j9ktbWCEJIDZuggF3aVHq0eYEUG5IVnJS2DGo2p-yw/formResponse",   //done
+    message: "https://script.google.com/macros/s/AKfycbw4bSO-qlESMIDh6--8lk7Z0l_eo9GiB6nrFQIJ4A5IMaI5Gu83xxNc7FBB1n-FV1Av6g/exec",  //done
     rsvp: "https://script.google.com/macros/s/AKfycbwDiUwUOUkdL2P_9qVsxsYsy_rdrx8oTJ-ruvvYKxw_7VHvPCbLUJfpj0kUb2b4tG0F/exec",  //done
-    guestList: "https://script.google.com/macros/s/AKfycbxMqfAigqLGPrpGEA2co_dDEMXmWCJeOExNkW3ectzVIKeWVTEeQw2LLDy4TJDG_bE/exec",  //done
-    guestRequest: "https://script.google.com/macros/s/AKfycbzN3cu5g06lboH7eUNOh9TluOj7_hXE1bdzih9yd7mqNubBI4x9pLenZE-6FHcuJBCq/exec",   //done
-    entourage: "https://script.google.com/macros/s/AKfycbyGriKcMzVPsRuzNYmpSpTjO-saO4PYqOqBLiLCj6f-PCHUjvBqakaAXdjobBlnKDkd/exec",  //done
-    sponsors: "https://script.google.com/macros/s/AKfycbw-W2pOWtf3fXnFa4RAh3XSn6eh7zz0s737akHzVgWoLbOFRPlnIPZJuOXWQZtAvJ7B/exec",  //done
+    guestList: "https://script.google.com/macros/s/AKfycbwQyq79w_c_eGes5-xe2WrUFr_HIo3UGUk3ORmYHh2l4Xagoc4SuwR0aX5exyWYcG_C4Q/exec",  //done
+    guestRequest: "https://script.google.com/macros/s/AKfycbzU3TEaSPM3_ERl5sBHJIgtR_GgYRG13j4d1YyLA6if2Z4PtdwqxXVBe0Ex5eqzoXfhUQ/exec",   //done
+    entourage: "https://script.google.com/macros/s/AKfycbypsXYcjM4H3PvFyEV0oVh96E1UHKDZ2_o_HNVsHY7T73_aL0WIxX6DOBPwZqLt9ReA3w/exec",  //done
+    sponsors: "https://script.google.com/macros/s/AKfycbzlWufdSWejk7OCHqAdJLI2XcVcIM6rT0FQcg5V2xATJ5g-cRRV2-8jTa8qz8333SUCLA/exec",  //done
     proposalResponses: "https://script.google.com/macros/s/AKfycbzcCySLdI8kP7Y_0F8v04oQFfLazBsBcp1v4sSn-NczPvg_Uz7nSE_uRaNvFWNoBpYg/exec", //done
-    weddingDetails: "https://script.google.com/macros/s/AKfycbxX0TQp-Y_eqoT1sMQiDiO1IQtYbgNP1Hx4HK8HzKT-73QWoKOnx61o0aH9x-ABpiuA/exec",   //done
+    weddingDetails: "https://script.google.com/macros/s/AKfycbw8tFwnhY0CuZHHuWRieLEgTV335yNj5cWTYSsMeKOL0bM8iOKod3dwgUrn5nJDTFczgw/exec",   //done
 ////google share 
-    googleShare: "https://docs.google.com/spreadsheets/d/1ya7PdpiKDxF16ryjaEZuCKTkn4eGjE4qpryGfw4tq4U/edit?usp=sharing", 
+    googleShare: "https://docs.google.com/spreadsheets/d/1W4eQAqGxrWuwg_g5mWeoy1mgLeRnBJnAbANMd63_CQ4/edit?usp=sharing", 
   },
   wedding: {
     date: "July 18, 2026",
