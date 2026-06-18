@@ -28,9 +28,11 @@ const cormorant = Cormorant_Garamond({
 const cinzel = Cinzel({
   subsets: ["latin"],
   weight: ["400", "600"],
-})  
+})
 
-// Colors sourced from globals.css @theme inline — edit there to update everywhere
+const detailsText = "color-mix(in srgb, var(--color-motif-deep) 90%, #2A1F18)"
+const detailsTextMuted = "color-mix(in srgb, var(--color-motif-deep) 78%, #2A1F18)"
+const detailsTextSoft = "color-mix(in srgb, var(--color-motif-deep) 68%, #2A1F18)"
 
 export function Details() {
   const siteConfig = useSiteConfig()
@@ -199,7 +201,8 @@ export function Details() {
           Event Details
         </h2>
         <p
-          className={`${cinzel.className} text-sm sm:text-base md:text-lg text-motif-medium font-normal max-w-xl mx-auto leading-relaxed tracking-[0.14em] px-4`}
+          className={`${cinzel.className} text-base sm:text-lg md:text-xl font-normal max-w-xl mx-auto leading-relaxed tracking-[0.12em] px-4`}
+          style={{ color: detailsTextMuted }}
         >
           Everything you need to know about our special day.
         </p>
@@ -243,24 +246,36 @@ export function Details() {
               {/* Date Section */}
               <div className="text-center mb-5 sm:mb-8 md:mb-10">
                 {/* Day name */}
-                <p className={`${cinzel.className} text-[10px] sm:text-xs md:text-sm font-semibold text-motif-medium uppercase tracking-[0.2em] mb-2 sm:mb-3`}>
+                <p
+                  className={`${cinzel.className} text-xs sm:text-sm md:text-base font-semibold uppercase tracking-[0.2em] mb-2 sm:mb-3`}
+                  style={{ color: detailsTextMuted }}
+                >
                   {siteConfig.ceremony.day}
                 </p>
                 
                 {/* Month - Script style with warm gold */}
                 <div className="mb-2 sm:mb-4">
-                  <p className={`${cinzel.className} text-xl sm:text-2xl md:text-3xl lg:text-4xl text-motif-medium leading-none`}>
+                  <p
+                    className={`${cinzel.className} text-2xl sm:text-3xl md:text-4xl lg:text-[2.75rem] leading-none`}
+                    style={{ color: detailsTextMuted }}
+                  >
                   {new Date(siteConfig.ceremony.date).toLocaleString('default', { month: 'long' })}
                   </p>
                 </div>
                 
                 {/* Day and Year */}
                 <div className="flex items-center justify-center gap-2 sm:gap-3 md:gap-4 mb-4 sm:mb-6 md:mb-7">
-                  <p className={`${cinzel.className} text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-normal text-motif-deep leading-none`}>
+                  <p
+                    className={`${cinzel.className} text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-normal leading-none`}
+                    style={{ color: detailsText }}
+                  >
                   {new Date(siteConfig.ceremony.date).getDate()}
                   </p>
                   <div className="h-10 sm:h-12 md:h-16 lg:h-20 w-[2px] bg-gradient-to-b from-motif-medium via-motif-deep to-motif-medium" />
-                  <p className={`${cinzel.className} text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light text-motif-deep leading-none`}>
+                  <p
+                    className={`${cinzel.className} text-xl sm:text-2xl md:text-3xl lg:text-4xl font-light leading-none`}
+                    style={{ color: detailsText }}
+                  >
                   {new Date(siteConfig.ceremony.date).getFullYear()}
                   </p>
                 </div>
@@ -273,7 +288,10 @@ export function Details() {
                 </div>
 
                 {/* Time */}
-                <p className={`${cinzel.className} text-sm sm:text-base md:text-lg lg:text-xl font-semibold text-motif-deep tracking-wide`}>
+                <p
+                  className={`${cinzel.className} text-base sm:text-lg md:text-xl lg:text-2xl font-semibold tracking-wide`}
+                  style={{ color: detailsText }}
+                >
                   {siteConfig.ceremony.time}
                 </p>
               </div>
@@ -283,18 +301,30 @@ export function Details() {
                 <div className="flex items-start gap-2 sm:gap-3 md:gap-4">
                   <MapPin className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-motif-deep mt-0.5 flex-shrink-0" />
                   <div className="flex-1 min-w-0">
-                    <p className="text-xs sm:text-sm md:text-base font-[family-name:var(--font-crimson)] font-semibold text-motif-deep mb-1.5 sm:mb-2 uppercase tracking-wide">
+                    <p
+                      className="text-sm sm:text-base md:text-lg font-[family-name:var(--font-crimson)] font-semibold mb-1.5 sm:mb-2 uppercase tracking-wide"
+                      style={{ color: detailsText }}
+                    >
                       Location
                     </p>
-                    <p className={`${cinzel.className} text-xs sm:text-sm md:text-base lg:text-lg font-[family-name:var(--font-crimson)] text-motif-deep leading-relaxed`}>
+                    <p
+                      className={`${cinzel.className} text-sm sm:text-base md:text-lg lg:text-xl font-[family-name:var(--font-crimson)] leading-relaxed`}
+                      style={{ color: detailsText }}
+                    >
                       {ceremonyVenueName}
                     </p>
                     {ceremonyVenueDetail && (
-                      <p className={`${cinzel.className} text-[10px] sm:text-xs md:text-sm font-[family-name:var(--font-crimson)] text-motif-medium/70 leading-relaxed mt-1`}>
+                      <p
+                        className={`${cinzel.className} text-xs sm:text-sm md:text-base font-[family-name:var(--font-crimson)] leading-relaxed mt-1`}
+                        style={{ color: detailsTextMuted }}
+                      >
                         {ceremonyVenueDetail}
                       </p>
                     )}
-                    <p className={`${cinzel.className} text-[10px] sm:text-xs md:text-sm font-[family-name:var(--font-crimson)] text-motif-deep/70 leading-relaxed`}>
+                    <p
+                      className={`${cinzel.className} text-xs sm:text-sm md:text-base font-[family-name:var(--font-crimson)] leading-relaxed`}
+                      style={{ color: detailsTextMuted }}
+                    >
                       {ceremonyAddress}
                     </p>
                   </div>
@@ -310,7 +340,10 @@ export function Details() {
                         bgColor="var(--color-motif-cream)"
                       />
                     </div>
-                    <p className="text-[9px] sm:text-[10px] md:text-xs font-[family-name:var(--font-crimson)] text-motif-deep/60 italic text-center max-w-[80px]">
+                    <p
+                      className="text-[10px] sm:text-xs md:text-sm font-[family-name:var(--font-crimson)] italic text-center max-w-[90px]"
+                      style={{ color: detailsTextSoft }}
+                    >
                       Scan for directions
                     </p>
                   </div>
@@ -321,7 +354,7 @@ export function Details() {
               <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4">
                 <button
                   onClick={() => openInMaps(ceremonyMapsLink)}
-                  className="flex-1 flex items-center justify-center gap-1.5 sm:gap-2 px-4 sm:px-5 py-2 sm:py-2.5 md:py-3 bg-motif-deep hover:bg-motif-accent text-motif-cream rounded-lg font-[family-name:var(--font-crimson)] font-semibold text-xs sm:text-sm md:text-base transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] premium-shadow"
+                  className="flex-1 flex items-center justify-center gap-1.5 sm:gap-2 px-4 sm:px-5 py-2.5 sm:py-3 md:py-3.5 bg-motif-deep hover:bg-motif-accent text-motif-cream rounded-lg font-[family-name:var(--font-crimson)] font-semibold text-sm sm:text-base md:text-lg transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] premium-shadow"
                   aria-label="Get directions to ceremony venue"
                 >
                   <Navigation className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5 flex-shrink-0" />
@@ -329,7 +362,8 @@ export function Details() {
                 </button>
                 <button
                   onClick={() => copyToClipboard(ceremonyVenue, 'ceremony')}
-                  className="flex-1 flex items-center justify-center gap-1.5 sm:gap-2 px-4 sm:px-5 py-2 sm:py-2.5 md:py-3 bg-motif-cream border-2 border-motif-deep/30 hover:border-motif-deep/50 hover:bg-motif-silver/20 text-motif-deep rounded-lg font-[family-name:var(--font-crimson)] font-semibold text-xs sm:text-sm md:text-base transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                  className="flex-1 flex items-center justify-center gap-1.5 sm:gap-2 px-4 sm:px-5 py-2.5 sm:py-3 md:py-3.5 bg-motif-cream border-2 border-motif-deep/30 hover:border-motif-deep/50 hover:bg-motif-silver/20 rounded-lg font-[family-name:var(--font-crimson)] font-semibold text-sm sm:text-base md:text-lg transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+                  style={{ color: detailsText }}
                   aria-label="Copy ceremony venue address"
                 >
                   {copiedItems.has('ceremony') ? (
@@ -432,7 +466,10 @@ export function Details() {
                         bgColor="var(--color-motif-cream)"
                       />
                     </div>
-                    <p className="text-[9px] sm:text-[10px] md:text-xs font-[family-name:var(--font-crimson)] text-motif-deep/60 italic text-center max-w-[80px]">
+                    <p
+                      className="text-[10px] sm:text-xs md:text-sm font-[family-name:var(--font-crimson)] italic text-center max-w-[90px]"
+                      style={{ color: detailsTextSoft }}
+                    >
                       Scan for directions
                     </p>
                   </div>
@@ -478,8 +515,8 @@ export function Details() {
             <div className="h-px w-10 sm:w-14 md:w-20 bg-motif-silver/60" />
           </div>
           <h3
-            className={`${cinzel.className} text-base sm:text-lg md:text-xl lg:text-2xl text-motif-deep uppercase tracking-[0.22em] font-semibold leading-tight`}
-            style={{ color: 'var(--color-motif-deep)' }}
+            className={`${cinzel.className} text-lg sm:text-xl md:text-2xl lg:text-3xl uppercase tracking-[0.22em] font-semibold leading-tight`}
+            style={{ color: detailsText }}
           >
             Attire Guidelines
           </h3>
@@ -490,7 +527,10 @@ export function Details() {
               {siteConfig.dressCode.theme}
             </span> */}
           </div>
-          <p className="text-sm sm:text-base md:text-lg text-motif-medium font-normal leading-relaxed">
+          <p
+            className={`${cormorant.className} text-base sm:text-lg md:text-xl font-normal leading-relaxed`}
+            style={{ color: detailsTextMuted }}
+          >
             Please dress according to the guidelines below.
           </p>
         </div>
@@ -505,7 +545,10 @@ export function Details() {
 
               {/* Title */}
               <div className="px-4 sm:px-6 md:px-8 pt-5 sm:pt-7 pb-4 sm:pb-5 text-center">
-                <h4 className={`${cinzel.className} text-base sm:text-lg md:text-xl lg:text-2xl text-motif-deep uppercase tracking-[0.22em] font-semibold leading-tight`}>
+                <h4
+                  className={`${cinzel.className} text-lg sm:text-xl md:text-2xl lg:text-3xl uppercase tracking-[0.22em] font-semibold leading-tight`}
+                  style={{ color: detailsText }}
+                >
                  Rustic Elegance in Beige Tones
                 </h4>
               </div>
@@ -585,12 +628,18 @@ export function Details() {
             <div className="relative border-b border-motif-silver/45 bg-gradient-to-b from-motif-silver/10 to-transparent px-4 pb-5 pt-6 text-center sm:px-8 sm:pb-6 sm:pt-7">
               <div className="mb-2.5 flex items-center justify-center gap-3">
                 <span className="h-px w-8 sm:w-14 bg-gradient-to-r from-transparent to-motif-deep/40" aria-hidden="true" />
-                <p className={`${cinzel.className} text-[11px] sm:text-xs uppercase tracking-[0.28em] font-semibold text-motif-deep`}>
+                <p
+                  className={`${cinzel.className} text-xs sm:text-sm uppercase tracking-[0.28em] font-semibold`}
+                  style={{ color: detailsText }}
+                >
                   Please Note
                 </p>
                 <span className="h-px w-8 sm:w-14 bg-gradient-to-l from-transparent to-motif-deep/40" aria-hidden="true" />
               </div>
-              <p className={`${cormorant.className} text-xs sm:text-sm italic text-motif-deep/55`}>
+              <p
+                className={`${cormorant.className} text-sm sm:text-base italic`}
+                style={{ color: detailsTextMuted }}
+              >
                 Dress code guidelines for our celebration
               </p>
             </div>
@@ -598,10 +647,16 @@ export function Details() {
             {/* Theme feature */}
             <div className="relative px-4 pb-5 pt-5 sm:px-8 sm:pb-6 sm:pt-6">
               <div className="rounded-xl border border-motif-deep/15 bg-gradient-to-br from-motif-deep/[0.08] via-motif-cream/80 to-motif-silver/25 px-4 py-4 text-center sm:px-6 sm:py-5">
-                <p className={`${cinzel.className} mb-2 text-[9px] sm:text-[10px] uppercase tracking-[0.24em] text-motif-deep/55`}>
+                <p
+                  className={`${cinzel.className} mb-2 text-[10px] sm:text-xs uppercase tracking-[0.24em]`}
+                  style={{ color: detailsTextSoft }}
+                >
                   Our Theme
                 </p>
-                <p className={`${cinzel.className} text-sm sm:text-base uppercase tracking-[0.14em] font-semibold text-motif-deep`}>
+                <p
+                  className={`${cinzel.className} text-base sm:text-lg uppercase tracking-[0.14em] font-semibold`}
+                  style={{ color: detailsText }}
+                >
                   Rustic Elegance in Beige Tones
                 </p>
               </div>
@@ -639,13 +694,15 @@ export function Details() {
                       : "border-motif-deep/12 bg-motif-cream/55"
                   }`}
                 >
-                  <p className={`${cinzel.className} mb-1.5 text-[9px] sm:text-[10px] uppercase tracking-[0.2em] font-semibold text-motif-deep/60`}>
+                  <p
+                    className={`${cinzel.className} mb-1.5 text-[10px] sm:text-xs uppercase tracking-[0.2em] font-semibold`}
+                    style={{ color: detailsTextMuted }}
+                  >
                     {note.label}
                   </p>
                   <p
-                    className={`${cormorant.className} text-sm sm:text-[15px] leading-relaxed sm:leading-[1.75] ${
-                      note.closing ? "italic text-motif-deep/85" : "text-motif-deep/90"
-                    }`}
+                    className={`${cormorant.className} text-base sm:text-lg leading-relaxed sm:leading-[1.75] ${note.closing ? "italic" : ""}`}
+                    style={{ color: note.closing ? detailsTextMuted : detailsText }}
                   >
                     {note.text}
                   </p>
@@ -684,7 +741,10 @@ export function Details() {
            
 
             {/* Title */}
-            <h3 className={`${cinzel.className} text-2xl sm:text-3xl md:text-4xl text-center text-motif-deep mb-6 sm:mb-8 font-normal tracking-wide`}>
+            <h3
+              className={`${cinzel.className} text-2xl sm:text-3xl md:text-4xl text-center mb-6 sm:mb-8 font-normal tracking-wide`}
+              style={{ color: detailsText }}
+            >
               GENTLE REMINDER
             </h3>
 
@@ -697,10 +757,16 @@ export function Details() {
 
               {/* Arrival Reminder */}
               <div className="bg-motif-cream/60 rounded-lg p-4 sm:p-5 md:p-6 border border-motif-deep/10 shadow-sm">
-                <h4 className={`${cinzel.className} text-base sm:text-lg md:text-xl font-semibold text-motif-deep mb-2 sm:mb-3`}>
+                <h4
+                  className={`${cinzel.className} text-lg sm:text-xl md:text-2xl font-semibold mb-2 sm:mb-3`}
+                  style={{ color: detailsText }}
+                >
                 Arrival
                 </h4>
-                <p className={`${cormorant.className} text-sm sm:text-base md:text-lg text-motif-deep/80 leading-relaxed`}>
+                <p
+                  className={`${cormorant.className} text-base sm:text-lg md:text-xl leading-relaxed`}
+                  style={{ color: detailsTextMuted }}
+                >
                 To ensure everything runs smoothly, please arrive at least 30 minutes before the ceremony starts. The program will begin at {siteConfig.ceremony.time}, so we kindly ask everyone to arrive by {siteConfig.ceremony.guestsTime} minutes. This will give you time to find your seat, take in the beautiful setup, and be fully present for our special moment
                 </p>
               </div>

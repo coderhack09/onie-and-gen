@@ -103,6 +103,11 @@ const ROLE_CATEGORY_ORDER = [
   "Children of the Groom",
   "Children of the Bride",
   "Children",
+  "Flower Girls",
+  "Ring/Coin Bearer",
+  "Candle Sponsors",
+  "Veil Sponsors",
+  "Cord Sponsors",
   "Parents of the Groom",
   "Parents of the Bride",
   "Family of the Groom",
@@ -114,12 +119,7 @@ const ROLE_CATEGORY_ORDER = [
   "Bridesmaids",
   "Little Groom",
   "Little Bride",
-  "Candle Sponsors",
-  "Veil Sponsors",
-  "Cord Sponsors",
-  "Ring/Coin Bearer",
   "Bible Bearer",
-  "Flower Girls",
 ]
 
 const HIDDEN_ROLE_CATEGORIES = new Set<string>([])
@@ -313,11 +313,22 @@ export function Entourage() {
     )
   }
 
+  const SectionDivider = () => (
+    <div className="flex justify-center py-2 sm:py-2.5 md:py-3 mb-2 sm:mb-2.5 md:mb-3">
+      <div
+        className="w-full max-w-md h-px"
+        style={{
+          background:
+            "linear-gradient(to right, transparent, color-mix(in srgb, var(--color-motif-medium) 31%, transparent), transparent)",
+        }}
+      />
+    </div>
+  )
+
   const renderPrincipalSponsorsSection = (keyPrefix = "") => {
     if (sponsors.length === 0) return null
     return (
       <div key={`${keyPrefix}SponsorsSection`}>
-        <div className="flex justify-center py-1.5 sm:py-2 md:py-2.5 mb-2 sm:mb-2.5 md:mb-3" />
         <TwoColumnLayout singleTitle="Principal Sponsors" centerContent={true}>
           {sponsors.map((sponsor, idx) => (
             <React.Fragment key={`sponsor-row-${idx}`}>
@@ -602,10 +613,21 @@ export function Entourage() {
             <>
               {renderOfficiatingPastorSection()}
 
-              {ROLE_CATEGORY_ORDER.map((category, categoryIndex) => {
+              {ROLE_CATEGORY_ORDER.map((category) => {
                 const members = grouped[category] || []
-                
-                if (members.length === 0) return null
+
+                const hasRingCoinMembers =
+                  category === "Ring/Coin Bearer" && getRingCoinBearerMembers(grouped).length > 0
+                const shouldRenderPrincipalSponsors =
+                  category === "Ring/Coin Bearer" && sponsors.length > 0
+
+                if (
+                  members.length === 0 &&
+                  !hasRingCoinMembers &&
+                  !shouldRenderPrincipalSponsors
+                ) {
+                  return null
+                }
                 if (HIDDEN_ROLE_CATEGORIES.has(category)) return null
 
                 // Rendered at the very top via renderOfficiatingPastorSection()
@@ -618,11 +640,6 @@ export function Entourage() {
                   
                   return (
                     <div key={category}>
-                      {categoryIndex > 0 && (
-                        <div className="flex justify-center py-2 sm:py-2.5 md:py-3 mb-2 sm:mb-2.5 md:mb-3">
-                          <div className="w-full max-w-md h-px" style={{ background: 'linear-gradient(to right, transparent, color-mix(in srgb, var(--color-motif-medium) 31%, transparent), transparent)' }}></div>
-                        </div>
-                      )}
                       <TwoColumnLayout singleTitle="The Couple" centerContent={true}>
                         <div className="px-1.5 sm:px-2 md:px-2.5">
                           {groom && <NameItem member={groom} align="right" />}
@@ -666,36 +683,11 @@ export function Entourage() {
                       : childrenGeneral.slice(Math.ceil(childrenGeneral.length / 2))
 
                   if (leftChildren.length === 0 && rightChildren.length === 0) {
-                    if (category !== "Children of the Groom") return null
-                    const sponsorsSection = renderPrincipalSponsorsSection("AfterChildren-")
-                    if (!sponsorsSection) return null
-                    return (
-                      <div key="PrincipalSponsorsAfterCouple">
-                        <div className="flex justify-center py-2 sm:py-2.5 md:py-3 mb-2 sm:mb-2.5 md:mb-3">
-                          <div
-                            className="w-full max-w-md h-px"
-                            style={{
-                              background:
-                                "linear-gradient(to right, transparent, color-mix(in srgb, var(--color-motif-medium) 31%, transparent), transparent)",
-                            }}
-                          />
-                        </div>
-                        {sponsorsSection}
-                      </div>
-                    )
+                    return null
                   }
 
                   return (
                     <div key="Children">
-                      <div className="flex justify-center py-2 sm:py-2.5 md:py-3 mb-2 sm:mb-2.5 md:mb-3">
-                        <div
-                          className="w-full max-w-md h-px"
-                          style={{
-                            background:
-                              "linear-gradient(to right, transparent, color-mix(in srgb, var(--color-motif-medium) 31%, transparent), transparent)",
-                          }}
-                        />
-                      </div>
                       <TwoColumnLayout singleTitle="Children" centerContent={true}>
                         {(() => {
                           const maxLen = Math.max(leftChildren.length, rightChildren.length)
@@ -725,9 +717,126 @@ export function Entourage() {
                           return rows
                         })()}
                       </TwoColumnLayout>
-                      {renderPrincipalSponsorsSection("AfterChildren-")}
                     </div>
                   )
+                }
+
+                // Flower Girls
+                if (category === "Flower Girls") {
+                  return (
+                    <div key="FlowerGirls">
+                      <TwoColumnLayout singleTitle="Flower Girls" centerContent={true}>
+                        <div className="col-span-full">
+                          <div className="max-w-sm mx-auto flex flex-col items-center gap-1 sm:gap-1.5 md:gap-2">
+                            {members.map((member, idx) => (
+                              <NameItem key={`flower-girl-${idx}-${member.name}`} member={member} align="center" />
+                            ))}
+                          </div>
+                        </div>
+                      </TwoColumnLayout>
+                    </div>
+                  )
+                }
+
+                // Principal Sponsors + Ring/Coin Bearer (sponsors always render here so order stays correct when Flower Girls is empty)
+                if (category === "Ring/Coin Bearer") {
+                  const ringCoinMembers = getRingCoinBearerMembers(grouped)
+                  const sponsorsSection = renderPrincipalSponsorsSection("BeforeRingCoin-")
+                  if (!sponsorsSection && ringCoinMembers.length === 0) return null
+
+                  return (
+                    <React.Fragment key="SponsorsAndRingCoin">
+                      {sponsorsSection}
+                      {ringCoinMembers.length > 0 && (
+                        <div key="RingCoinBearer">
+                          <TwoColumnLayout singleTitle="Ring/Coin Bearer" centerContent={true}>
+                            {ringCoinMembers.length === 2 ? (
+                              <>
+                                <div className="px-1.5 sm:px-2 md:px-2.5">
+                                  <NameItem member={ringCoinMembers[0]} align="right" />
+                                </div>
+                                <div className="px-1.5 sm:px-2 md:px-2.5">
+                                  <NameItem member={ringCoinMembers[1]} align="left" />
+                                </div>
+                              </>
+                            ) : (
+                              <div className="col-span-full">
+                                <div className="max-w-sm mx-auto flex flex-col items-center gap-0.5 sm:gap-1 md:gap-1">
+                                  {ringCoinMembers.map((member, idx) => (
+                                    <NameItem key={`ring-coin-${idx}-${member.name}`} member={member} align="center" />
+                                  ))}
+                                </div>
+                              </div>
+                            )}
+                          </TwoColumnLayout>
+                        </div>
+                      )}
+                    </React.Fragment>
+                  )
+                }
+
+                // Ceremonial Rites: Candle, Veil, and Cord sponsors
+                if (
+                  category === "Candle Sponsors" ||
+                  category === "Veil Sponsors" ||
+                  category === "Cord Sponsors"
+                ) {
+                  const ceremonialGroups = [
+                    "Candle Sponsors",
+                    "Veil Sponsors",
+                    "Cord Sponsors",
+                  ] as const
+                  const firstPresentGroup = ceremonialGroups.find((g) => (grouped[g]?.length ?? 0) > 0)
+                  if (category !== firstPresentGroup) return null
+
+                  const renderSecondarySponsorGroup = (
+                    title: "Candle Sponsors" | "Veil Sponsors" | "Cord Sponsors"
+                  ) => {
+                    const grpMembers = grouped[title] || []
+                    if (grpMembers.length === 0) return null
+
+                    return (
+                      <div key={title} className="mb-2 sm:mb-2.5 md:mb-3">
+                        <TwoColumnLayout singleTitle={title} centerContent={true}>
+                          {grpMembers.length === 2 ? (
+                            <>
+                              <div className="px-1.5 sm:px-2 md:px-2.5">
+                                <NameItem member={grpMembers[0]} align="right" />
+                              </div>
+                              <div className="px-1.5 sm:px-2 md:px-2.5">
+                                <NameItem member={grpMembers[1]} align="left" />
+                              </div>
+                            </>
+                          ) : (
+                            <div className="col-span-full">
+                              <div className="max-w-sm mx-auto flex flex-col items-center gap-0.5 sm:gap-1 md:gap-1">
+                                {grpMembers.map((member, idx) => (
+                                  <NameItem key={`${title}-${idx}-${member.name}`} member={member} align="center" />
+                                ))}
+                              </div>
+                            </div>
+                          )}
+                        </TwoColumnLayout>
+                      </div>
+                    )
+                  }
+
+                  return (
+                    <div key="CeremonialRitesBlock">
+                      <SectionDivider />
+                      <div className="mb-2 sm:mb-3.5 md:mb-4">
+                        <SectionTitle>Ceremonial Rites</SectionTitle>
+                      </div>
+                      {renderSecondarySponsorGroup("Candle Sponsors")}
+                      {renderSecondarySponsorGroup("Veil Sponsors")}
+                      {renderSecondarySponsorGroup("Cord Sponsors")}
+                    </div>
+                  )
+                }
+
+                // Skip Ring Bearer / Coin Bearer — merged into Ring/Coin Bearer above
+                if (category === "Ring Bearer" || category === "Coin Bearer") {
+                  return null
                 }
 
                 // Special handling for Parents sections - combine into single two-column layout
@@ -753,11 +862,6 @@ export function Entourage() {
                   if (category === "Parents of the Groom") {
                     return (
                       <div key="Parents">
-                        {categoryIndex > 0 && (
-                          <div className="flex justify-center py-2 sm:py-2.5 md:py-3 mb-2 sm:mb-2.5 md:mb-3">
-                            <div className="w-full max-w-md h-px" style={{ background: 'linear-gradient(to right, transparent, color-mix(in srgb, var(--color-motif-medium) 31%, transparent), transparent)' }}></div>
-                          </div>
-                        )}
                         <TwoColumnLayout leftTitle="Groom’s Parents" rightTitle="Bride’s Parents">
                           {(() => {
                             const leftArr = sortParents(parentsGroom)
@@ -796,11 +900,6 @@ export function Entourage() {
                   if (category === "Family of the Groom") {
                     return (
                       <div key="Family">
-                        {categoryIndex > 0 && (
-                          <div className="flex justify-center py-2 sm:py-2.5 md:py-3 mb-2 sm:mb-2.5 md:mb-3">
-                            <div className="w-full max-w-md h-px" style={{ background: 'linear-gradient(to right, transparent, color-mix(in srgb, var(--color-motif-medium) 31%, transparent), transparent)' }}></div>
-                          </div>
-                        )}
                         <TwoColumnLayout leftTitle="Family of the Groom" rightTitle="Family of the Bride">
                           {(() => {
                             const maxLen = Math.max(familyGroom.length, familyBride.length)
@@ -839,11 +938,6 @@ export function Entourage() {
                   if (category === "Best Man") {
                     return (
                       <div key="HonorAttendants">
-                        {categoryIndex > 0 && (
-                          <div className="flex justify-center py-2 sm:py-2.5 md:py-3 mb-2 sm:mb-2.5 md:mb-3">
-                            <div className="w-full max-w-md h-px" style={{ background: 'linear-gradient(to right, transparent, color-mix(in srgb, var(--color-motif-medium) 31%, transparent), transparent)' }}></div>
-                          </div>
-                        )}
                         <TwoColumnLayout leftTitle="Best Men" rightTitle="Maid of Honor">
                           {(() => {
                             const maxLen = Math.max(bestMan.length, maidOfHonor.length)
@@ -882,11 +976,6 @@ export function Entourage() {
                   if (category === "Little Groom") {
                     return (
                       <div key="LittleOnes">
-                        {categoryIndex > 0 && (
-                          <div className="flex justify-center py-2 sm:py-2.5 md:py-3 mb-2 sm:mb-2.5 md:mb-3">
-                            <div className="w-full max-w-md h-px" style={{ background: 'linear-gradient(to right, transparent, color-mix(in srgb, var(--color-motif-medium) 31%, transparent), transparent)' }}></div>
-                          </div>
-                        )}
                         <TwoColumnLayout leftTitle="Little Groom" rightTitle="Little Bride">
                           {(() => {
                             const maxLen = Math.max(littleGroom.length, littleBride.length)
@@ -915,79 +1004,6 @@ export function Entourage() {
                   return null
                 }
 
-                // Ceremonial Rites block: secondary sponsors + ring/coin bearers under one heading
-                if (
-                  category === "Candle Sponsors" ||
-                  category === "Veil Sponsors" ||
-                  category === "Cord Sponsors" ||
-                  category === "Ring/Coin Bearer"
-                ) {
-                  const ceremonialGroups = [
-                    "Candle Sponsors",
-                    "Veil Sponsors",
-                    "Cord Sponsors",
-                    "Ring/Coin Bearer",
-                  ] as const
-                  const firstPresentGroup = ceremonialGroups.find((g) => {
-                    if (g === "Ring/Coin Bearer") {
-                      return getRingCoinBearerMembers(grouped).length > 0
-                    }
-                    return (grouped[g]?.length ?? 0) > 0
-                  })
-                  if (category !== firstPresentGroup) return null
-
-                  const renderSecondarySponsorGroup = (
-                    title: "Candle Sponsors" | "Veil Sponsors" | "Cord Sponsors" | "Ring/Coin Bearer"
-                  ) => {
-                    const grpMembers =
-                      title === "Ring/Coin Bearer" ? getRingCoinBearerMembers(grouped) : grouped[title] || []
-                    if (grpMembers.length === 0) return null
-
-                    return (
-                      <div key={title} className="mb-2 sm:mb-2.5 md:mb-3">
-                        <TwoColumnLayout singleTitle={title} centerContent={true}>
-                          {grpMembers.length === 2 ? (
-                            <>
-                              <div className="px-1.5 sm:px-2 md:px-2.5">
-                                <NameItem member={grpMembers[0]} align="right" />
-                              </div>
-                              <div className="px-1.5 sm:px-2 md:px-2.5">
-                                <NameItem member={grpMembers[1]} align="left" />
-                              </div>
-                            </>
-                          ) : (
-                            <div className="col-span-full">
-                              <div className="max-w-sm mx-auto flex flex-col items-center gap-0.5 sm:gap-1 md:gap-1">
-                                {grpMembers.map((member, idx) => (
-                                  <NameItem key={`${title}-${idx}-${member.name}`} member={member} align="center" />
-                                ))}
-                              </div>
-                            </div>
-                          )}
-                        </TwoColumnLayout>
-                      </div>
-                    )
-                  }
-
-                  return (
-                    <div key="SecondarySponsorBlock">
-                      {categoryIndex > 0 && (
-                        <div className="flex justify-center py-2 sm:py-2.5 md:py-3 mb-2 sm:mb-2.5 md:mb-3">
-                          <div className="w-full max-w-md h-px" style={{ background: 'linear-gradient(to right, transparent, color-mix(in srgb, var(--color-motif-medium) 31%, transparent), transparent)' }}></div>
-                        </div>
-                      )}
-                      {/* Parent heading */}
-                      <div className="mb-2 sm:mb-3.5 md:mb-4">
-                        <SectionTitle>Ceremonial Rites</SectionTitle>
-                      </div>
-                      {renderSecondarySponsorGroup("Ring/Coin Bearer")}
-                      {renderSecondarySponsorGroup("Candle Sponsors")}
-                      {renderSecondarySponsorGroup("Veil Sponsors")}
-                      {renderSecondarySponsorGroup("Cord Sponsors")}
-
-                    </div>
-                  )
-                }
                 if (category === "Bridesmaids" || category === "Groomsmen") {
                   // Get both bridal party groups
                   const bridesmaids = grouped["Bridesmaids"] || []
@@ -999,11 +1015,6 @@ export function Entourage() {
                       <React.Fragment key="BridalPartySection">
                         {/* Groomsmen/Bridesmaids section */}
                         <div key="BridalParty">
-                          {categoryIndex > 0 && (
-                            <div className="flex justify-center py-2 sm:py-2.5 md:py-3 mb-2 sm:mb-2.5 md:mb-3">
-                              <div className="w-full max-w-md h-px" style={{ background: 'linear-gradient(to right, transparent, color-mix(in srgb, var(--color-motif-medium) 31%, transparent), transparent)' }}></div>
-                            </div>
-                          )}
                           <TwoColumnLayout leftTitle="Groomsmen" rightTitle="Bridesmaids">
                             {(() => {
                               const maxLen = Math.max(bridesmaids.length, groomsmen.length)
@@ -1036,11 +1047,6 @@ export function Entourage() {
                 // Default: single title, centered content
                 return (
                   <div key={category}>
-                    {categoryIndex > 0 && (
-                      <div className="flex justify-center py-2 sm:py-2.5 md:py-3 mb-2 sm:mb-2.5 md:mb-3">
-                        <div className="w-full max-w-md h-px" style={{ background: 'linear-gradient(to right, transparent, color-mix(in srgb, var(--color-motif-medium) 31%, transparent), transparent)' }}></div>
-                      </div>
-                    )}
                     <TwoColumnLayout singleTitle={category} centerContent={true}>
                       {(() => {
                         const SINGLE_COLUMN_SECTIONS = new Set([
@@ -1109,9 +1115,6 @@ export function Entourage() {
                 const members = grouped[category]
                 return (
                   <div key={category}>
-                    <div className="flex justify-center py-3 sm:py-4 md:py-5 mb-5 sm:mb-6 md:mb-8">
-
-                    </div>
                     <TwoColumnLayout singleTitle={category} centerContent={true}>
                       {(() => {
                         if (members.length <= 2) {
