@@ -681,66 +681,19 @@ export function Details() {
           {/* Content */}
           <div className="relative z-10 px-4 sm:px-6 md:px-8 py-6 sm:py-8 md:py-10">
             {/* Animated couple photos carousel */}
-            <div className="flex justify-center gap-2 sm:gap-3 md:gap-4 mb-6 sm:mb-8">
-              {coupleImages.map((image, index) => {
-                const isActive = index === currentImageIndex
-                // Alternate rotation: -5deg, 5deg, -3deg, 3deg for variety
-                const baseRotation = index === 0 ? -5 : index === 1 ? 5 : index === 2 ? -3 : 3
-                // Add gentle rotation animation for active image
-                const currentRotation = isActive 
-                  ? baseRotation + Math.sin(rotationOffset * Math.PI / 180) * 2 
-                  : baseRotation
-                
-                return (
-                  <div
-                    key={index}
-                    className={`relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-lg overflow-hidden border-2 border-motif-deep/30 shadow-lg transition-all duration-700 ease-in-out ${
-                      isActive ? 'scale-110 z-10' : 'scale-100 opacity-70'
-                    }`}
-                    style={{
-                      transform: `rotate(${currentRotation}deg) ${isActive ? 'scale(1.1)' : 'scale(1)'}`,
-                    }}
-                  >
-                    <Image
-                      src={image}
-                      alt={`Wedding couple ${index + 1}`}
-                      fill
-                      className={`object-cover transition-opacity duration-500 ${
-                        isActive ? 'opacity-100' : 'opacity-70'
-                      }`}
-                      sizes="(max-width: 640px) 64px, (max-width: 768px) 80px, 96px"
-                    />
-                  </div>
-                )
-              })}
-            </div>
+           
 
             {/* Title */}
             <h3 className={`${cinzel.className} text-2xl sm:text-3xl md:text-4xl text-center text-motif-deep mb-6 sm:mb-8 font-normal tracking-wide`}>
-              GENTLE REMINDERS
+              GENTLE REMINDER
             </h3>
 
             {/* Reminders List */}
             <div className="space-y-4 sm:space-y-5 md:space-y-6 max-w-2xl mx-auto">
                {/* No Kinds */}
-               <div className="bg-motif-cream/60 rounded-lg p-4 sm:p-5 md:p-6 border border-motif-deep/10 shadow-sm">
-                <h4 className={`${cinzel.className} text-base sm:text-lg md:text-xl font-semibold text-motif-deep mb-2 sm:mb-3`}>
-                Adults-Only Celebration
-                </h4>
-                <p className={`${cormorant.className} text-sm sm:text-base md:text-lg text-motif-deep/80 leading-relaxed`}>
-                We kindly request that our wedding be an adults-only occasion. We hope this allows everyone to relax and fully enjoy the celebration with us.
-                </p>
-              </div>
+          
               {/* Unplugged Ceremony Reminder */}
-              <div className="bg-motif-cream/60 rounded-lg p-4 sm:p-5 md:p-6 border border-motif-deep/10 shadow-sm">
-                <h4 className={`${cinzel.className} text-base sm:text-lg md:text-xl font-semibold text-motif-deep mb-2 sm:mb-3`}>
-                Unplugged Ceremony
-
-                </h4>
-                <p className={`${cormorant.className} text-sm sm:text-base md:text-lg text-motif-deep/80 leading-relaxed`}>
-                We&apos;re having a mostly unplugged ceremony. Guests may take photos, but we kindly ask that it be kept minimal. Please avoid blocking or crowding our official photographers so they can capture the special moments. We&apos;d love for everyone to stay present and share the moment with us. Don&apos;t worry—professional photos will be shared with you after the event. Thank you for your understanding 
-                </p>
-              </div>
+           
 
               {/* Arrival Reminder */}
               <div className="bg-motif-cream/60 rounded-lg p-4 sm:p-5 md:p-6 border border-motif-deep/10 shadow-sm">

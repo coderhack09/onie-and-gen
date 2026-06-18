@@ -10,7 +10,7 @@ export const siteConfig = {
     groom: "Ronillo C. Solomon", //Ltryl B. Benitez
     groomNickname: "Onie",
     monogram:"/monogram/mono.png" ,//Ltryl
-    backgroundMusic:"/background_music/CeCe Winans - Goodness of God (Official Video).mp3"
+    backgroundMusic:"/background_music/Goodness of God - piano instrumental cover with lyrics.mp3"
   },
   googleAPI:{
     messageForm: "https://docs.google.com/forms/d/e/1FAIpQLScHQG10j9ktbWCEJIDZuggF3aVHq0eYEUG5IVnJS2DGo2p-yw/formResponse",   //done
@@ -53,10 +53,10 @@ export const siteConfig = {
   },
   giftRegistry: {
     QR_1:{
-    id: "BDO",
-    src: "/QR/BDO.png",
-    label: "BDO",
-    accountNumber: "CRISMARK: ********9097",
+    id: "Gcash",
+    src: "/QR/Gcash.png",
+    label: "Gcash",
+    accountNumber: "GE*****E S. : +63927532 ****",
     },
     // QR_2:{
     // id: "GCash",

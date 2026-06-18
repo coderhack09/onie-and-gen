@@ -40,16 +40,16 @@ function getFaqItems(siteConfig: SiteConfig): FAQItem[] {
     answer:
     `Our wedding will be held on ${siteConfig.ceremony.date} (${siteConfig.ceremony.day})`
   },
-  {
-    question: "What time should I arrive for the ceremony?",
-    answer:
-      `Our ceremony will begin promptly at ${siteConfig.ceremony.time}. We kindly ask guests to arrive 30–45 minutes earlier to allow enough time for parking, walking to the ceremony area, and finding your seats so we can begin on time.`,
-  },
-  {
-    question: "Where will the ceremony and reception take place?",
-    answer:
-    `The ceremony and reception will be held at ${siteConfig.ceremony.location}, ${siteConfig.ceremony.venue}. You can find detailed directions, addresses, and maps in the Details Section above`
-  },
+  // {
+  //   question: "What time should I arrive for the ceremony?",
+  //   answer:
+  //     `Our ceremony will begin promptly at ${siteConfig.ceremony.time}. We kindly ask guests to arrive 30–45 minutes earlier to allow enough time for parking, walking to the ceremony area, and finding your seats so we can begin on time.`,
+  // },
+  // {
+  //   question: "Where will the ceremony and reception take place?",
+  //   answer:
+  //   `The ceremony and reception will be held at ${siteConfig.ceremony.location}, ${siteConfig.ceremony.venue}. You can find detailed directions, addresses, and maps in the Details Section above`
+  // },
   // {
   //   question: "Is there an entourage call time?",
   //   answer:
@@ -110,32 +110,32 @@ function getFaqItems(siteConfig: SiteConfig): FAQItem[] {
     answer:
       "Yes, parking is available at the venue, and parking attendants, along with our coordinators, will assist you on the day",
   },
-  {
-    question: "Will there be a wedding gift registry?",
-    answer:
-      "With all that we have, we are truly blessed. Your presence and prayers are what we request most. However, if you desire to give nonetheless, a monetary gift to help us begin our new life together would be humbly appreciated. You can find our gift registry information in the Gift Guide section.",
-  },
-  {
-    question: "Unplugged Ceremony",
-    answer:
-      "EYES UP, PHONES DOWN, HEARTS OPEN.\n\nThe greatest gift you can give us during our ceremony is your presence. We respectfully request that guests refrain from taking photos or videos during the ceremony so our official photographers can capture every moment without distraction. We promise to share the beautiful photos with you afterward!\n\nOur professional photographers will be capturing every beautiful memory, and we promise to share the photos with everyone afterwards.",
-  },
-  {
-    question: "Can I take photos or videos during the reception?",
-    answer:
-      "Yes! While our I DO’s will be unplugged, our reception will not be. As a couple who loves photos and memories, we would love for you to capture the fun moments throughout the evening. We prepared this celebration wholeheartedly and we want everyone to enjoy it fully.",
-  },
-  {
-    question: "What should I do if I can’t make it?",
-    answer:
-      "Your presence will truly be missed, but we completely understand.\n\nPlease kindly let us know through RSVP as soon as possible so we may adjust arrangements accordingly.",
-  },
-  {
-    question: "I said “No” to RSVP but my plans changed. Can I still attend?",
-    answer:
-      "Please check with us first before making arrangements. Due to limited seating and a carefully planned guest list, attendance cannot be guaranteed without prior confirmation.",
-  },
-  {
+  // {
+  //   question: "Will there be a wedding gift registry?",
+  //   answer:
+  //     "With all that we have, we are truly blessed. Your presence and prayers are what we request most. However, if you desire to give nonetheless, a monetary gift to help us begin our new life together would be humbly appreciated. You can find our gift registry information in the Gift Guide section.",
+  // },
+  // {
+  //   question: "Unplugged Ceremony",
+  //   answer:
+  //     "EYES UP, PHONES DOWN, HEARTS OPEN.\n\nThe greatest gift you can give us during our ceremony is your presence. We respectfully request that guests refrain from taking photos or videos during the ceremony so our official photographers can capture every moment without distraction. We promise to share the beautiful photos with you afterward!\n\nOur professional photographers will be capturing every beautiful memory, and we promise to share the photos with everyone afterwards.",
+  // },
+  // {
+  //   question: "Can I take photos or videos during the reception?",
+  //   answer:
+  //     "Yes! While our I DO’s will be unplugged, our reception will not be. As a couple who loves photos and memories, we would love for you to capture the fun moments throughout the evening. We prepared this celebration wholeheartedly and we want everyone to enjoy it fully.",
+  // },
+  // {
+  //   question: "What should I do if I can’t make it?",
+  //   answer:
+  //     "Your presence will truly be missed, but we completely understand.\n\nPlease kindly let us know through RSVP as soon as possible so we may adjust arrangements accordingly.",
+  // },
+  // {
+  //   question: "I said “No” to RSVP but my plans changed. Can I still attend?",
+  //   answer:
+  //     "Please check with us first before making arrangements. Due to limited seating and a carefully planned guest list, attendance cannot be guaranteed without prior confirmation.",
+  // },
+ {
     question: "When is the appropriate time to leave?",
     answer:
       "It took us some time to plan for a heartfelt wedding that everyone would hopefully enjoy. We humbly request that you celebrate with us until the program ends. Please don't eat and run! Let's laugh, take pictures, sing, and have fun!",
@@ -145,11 +145,11 @@ function getFaqItems(siteConfig: SiteConfig): FAQItem[] {
     answer:
       "We adore your little ones — truly. However, we have lovingly planned this as an adults-only celebration so that every guest, including you, can fully relax, enjoy the program, and be present in the moment.\n\nWe kindly ask that you make childcare arrangements for the day. We hope you understand, and we are so grateful that you are celebrating this milestone with us.",
   },
-  {
-    question: "What if I have dietary restrictions or allergies?",
-    answer:
-      "Please let us know about any dietary restrictions or allergies when you RSVP. We want to ensure everyone can enjoy the celebration comfortably.",
-  },
+  // {
+  //   question: "What if I have dietary restrictions or allergies?",
+  //   answer:
+  //     "Please let us know about any dietary restrictions or allergies when you RSVP. We want to ensure everyone can enjoy the celebration comfortably.",
+  // },
   {
     question: "How can I help the couple have a great time during their wedding?",
     answer:

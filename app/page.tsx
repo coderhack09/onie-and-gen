@@ -94,24 +94,22 @@ export default function Home() {
                {/* <CoupleVideo />  */}
               <LoveStory />
               <Countdown />
-              <Gallery />
-
+              {/* <Gallery /> */}
               {/* <VideoMessage /> */}
-              <Messages />
+   
               <Details />
               <WeddingTimeline />
-              <WeddingPlaylist />
+              {/* <WeddingPlaylist /> */}
               {/* <GuestInformation /> */}
-
               <Entourage />
               {/* <GuestList /> */}
               <RSVP />
               <BookOfGuests />
-              <Registry />
+              <Messages />
               {/* <PrincipalSponsors /> */}
               <FAQ />
- 
-              <SnapShare />
+              <Registry />
+              {/* <SnapShare /> */}
 
               <Footer />
             </div>

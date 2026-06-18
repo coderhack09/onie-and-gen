@@ -11,9 +11,9 @@ interface LoadingScreenProps {
 
 // Countdown boxes with color photos - numbers show days, hours, minutes
 const COUNTDOWN_BOXES = [
-  { src: '/frontboxes/box1.png' },
-  { src: '/frontboxes/box3.png' },
-  { src: '/frontboxes/box2.png' }
+  { src: '/frontboxes/couple (1).jpg' },
+  { src: '/frontboxes/couple (2).jpg' },
+  { src: '/frontboxes/couple (4).jpg' }
 ];
 
 const MAIN_BW_IMAGE = '/mobile-background/couple (17).png';

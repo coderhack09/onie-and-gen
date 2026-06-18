@@ -53,7 +53,7 @@ function buildTimelineEvents(siteConfig: SiteConfig): TimelineEvent[] {
   },  
   {
     time: `2:30 PM`,
-    title: "Pre-Ceremony / Processional",
+    title: "Pre-Ceremony  Processional",
     location: `${siteConfig.ceremony.location}`,
     icon: RingsIcon,
     imageSrc: "/weddingtimeline/WeddingCeremony.png",

@@ -63,7 +63,7 @@ export function LoveStory() {
         layout="image-left"
         isFirst={true}
         title="WHEN THEIR PATHS FIRST CROSSED"
-        imageSrc="/mobile-background/couple (19).png"
+        imageSrc="/frontboxes/couple (4).jpg"
         text={
           <>
             <p className="mb-4">
@@ -135,7 +135,7 @@ export function LoveStory() {
             <StorySection
         theme="dark"
         layout="image-right"
-        imageSrc="/mobile-background/couple (25).png"
+        imageSrc="/frontboxes/couple (1).jpg"
         title="HELD TOGETHER BY GRACE"
         text={
           <>
@@ -161,7 +161,7 @@ export function LoveStory() {
         theme="light"
         layout="image-left"
         isLast={true}
-        imageSrc="/mobile-background/couple (6).png"
+        imageSrc="/frontboxes/couple (2).jpg"
         title="A PROMISE FULFILLED IN GOD'S TIME"
         text={
           <>
