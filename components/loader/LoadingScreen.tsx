@@ -9,18 +9,21 @@ interface LoadingScreenProps {
   onComplete: () => void;
 }
 
-// Countdown boxes with color photos - numbers show days, hours, minutes
-const COUNTDOWN_BOXES = [
-  { src: '/frontboxes/couple (1).jpg' },
-  { src: '/frontboxes/couple (2).jpg' },
-  { src: '/frontboxes/couple (4).jpg' }
-];
-
+const DATE_BOX_COUNT = 3;
 const MAIN_BW_IMAGE = '/mobile-background/couple (17).png';
 const DESKTOP_BW_IMAGE = '/frontboxes/desktop.png';
-const STAGGER_DELAY_MS = 4000; // Each image appears every 4 seconds
+const STAGGER_DELAY_MS = 4000; // Each box appears every 4 seconds
 const BOX_TRANSITION_MS = 1200; // Slow, smooth transition
-const TOTAL_DURATION_MS = COUNTDOWN_BOXES.length * STAGGER_DELAY_MS + 3000;
+const TOTAL_DURATION_MS = DATE_BOX_COUNT * STAGGER_DELAY_MS + 3000;
+
+// Motif RGB values for layered glass effects (matches globals.css)
+const motifRgb = {
+  deep: '140, 104, 78',
+  medium: '160, 158, 133',
+  accent: '185, 143, 101',
+  cream: '255, 255, 255',
+  silver: '216, 198, 174',
+};
 
 export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
   const siteConfig = useSiteConfig();
@@ -57,13 +60,8 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
   }, []);
 
   useEffect(() => {
-    const t = setInterval(() => setNow(new Date()), 60000); // update every minute
-    return () => clearInterval(t);
-  }, []);
-
-  useEffect(() => {
     const timers: NodeJS.Timeout[] = [];
-    COUNTDOWN_BOXES.forEach((_, i) => {
+    Array.from({ length: DATE_BOX_COUNT }).forEach((_, i) => {
       timers.push(
         setTimeout(() => setVisibleBoxes((prev) => [...prev, i]), i * STAGGER_DELAY_MS)
       );
@@ -93,23 +91,6 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
 
   const coupleNames = `${siteConfig.couple.groomNickname} & ${siteConfig.couple.brideNickname}`;
   const productionCredit = '';
-
-
-//   Background	#F5EFE6
-// --color-motif-deep:    #9C5A63; /* deeper rose */
-// --color-motif-medium:  #D88C9A; /* muted pink */
-// --color-motif-accent:  #F2B5B5; /* pastel pink */
-// --color-motif-cream:   #FFF8F5; /* creamy white */
-// --color-motif-soft:    #F9E4E4; /* soft background */
-// --color-motif-silver:  #CFC7C7; /* refined gray */
-  const palette = {
-    deep: '--color-motif-deep',
-    medium: '--color-motif-medium',
-    accent: '--color-motif-accent',
-    cream: '--color-motif-cream',
-    soft: '--color-motif-soft',
-    silver: '--color-motif-silver',
-  };
 
   return (
     <div
@@ -175,7 +156,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
                 style={{
                   fontFamily: '"Cinzel", serif',
                   color: 'var(--color-motif-cream)',
-                  fontSize: 'clamp(1.1rem, 5vw, 1.75rem)',
+                  fontSize: 'clamp(1.25rem, 5.5vw, 2rem)',
                   letterSpacing: '0.18em',
                   textTransform: 'uppercase',
                   textShadow: '0 2px 10px rgba(0,0,0,0.6)',
@@ -191,51 +172,111 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
         </div>
 
         {/* Spacer - lets B&W image dominate (upper 2/3) */}
-        <div className="flex-1 min-h-[12vh]" />
+        <div className="flex-1 min-h-[8vh]" />
 
-        {/* Middle: Three color countdown boxes - staggered reveal */}
-        <div className="flex items-stretch justify-center gap-3 sm:gap-4 md:gap-6 px-3 sm:px-4 py-4 flex-shrink-0">
-          {COUNTDOWN_BOXES.map((item, i) => {
+        {/* Middle: Three frosted glass date boxes - staggered reveal */}
+        <div className="flex items-stretch justify-center gap-4 sm:gap-6 md:gap-8 px-4 sm:px-6 py-5 sm:py-7 flex-shrink-0 w-full max-w-4xl mx-auto">
+          {Array.from({ length: DATE_BOX_COUNT }).map((_, i) => {
             const isVisible = visibleBoxes.includes(i);
             return (
               <div
                 key={i}
-                className="relative flex-1 max-w-[28vw] sm:max-w-[140px] md:max-w-[160px] aspect-[3/4] overflow-hidden rounded-3xl border border-white/40 bg-white/10 backdrop-blur-md shadow-[0_18px_45px_rgba(0,0,0,0.35)]"
+                className="relative flex-1 w-full max-w-[42vw] sm:max-w-[190px] md:max-w-[220px] lg:max-w-[260px] aspect-[3/4] overflow-hidden rounded-[1.75rem] sm:rounded-[2rem] backdrop-blur-2xl"
                 style={{
                   opacity: isVisible ? 1 : 0,
                   transform: isVisible
                     ? 'translateY(0) scale(1)'
-                    : 'translateY(28px) scale(0.94)',
+                    : 'translateY(32px) scale(0.92)',
                   transition: `opacity ${BOX_TRANSITION_MS}ms cubic-bezier(0.4, 0, 0.2, 1), transform ${BOX_TRANSITION_MS}ms cubic-bezier(0.4, 0, 0.2, 1)`,
+                  background: `linear-gradient(
+                    155deg,
+                    rgba(${motifRgb.deep}, 0.42) 0%,
+                    rgba(${motifRgb.medium}, 0.2) 38%,
+                    rgba(${motifRgb.silver}, 0.14) 62%,
+                    rgba(${motifRgb.accent}, 0.32) 100%
+                  )`,
+                  border: `1.5px solid rgba(${motifRgb.cream}, 0.45)`,
+                  boxShadow: isVisible
+                    ? `0 28px 64px rgba(${motifRgb.deep}, 0.5),
+                       0 10px 28px rgba(0, 0, 0, 0.28),
+                       inset 0 2px 0 rgba(${motifRgb.cream}, 0.6),
+                       inset 0 -3px 12px rgba(${motifRgb.deep}, 0.22),
+                       0 0 0 1px rgba(${motifRgb.accent}, 0.2),
+                       0 0 40px rgba(${motifRgb.accent}, 0.15)`
+                    : 'none',
                 }}
               >
-                <Image
-                  src={item.src}
-                  alt={coupleNames}
-                  fill
-                  className="object-cover scale-105"
-                  sizes="(max-width: 640px) 28vw, 160px"
-                />
-                {/* Soft gradient overlay for readable number */}
+                {/* Inner frosted panel */}
                 <div
-                  className="absolute inset-0"
+                  className="absolute inset-[6px] sm:inset-2 rounded-[1.25rem] sm:rounded-[1.5rem] pointer-events-none"
                   style={{
-                    background: `linear-gradient(145deg, ${palette.deep}66 0%, transparent 40%, ${palette.accent}aa 100%)`,
+                    background: `linear-gradient(
+                      180deg,
+                      rgba(${motifRgb.cream}, 0.14) 0%,
+                      rgba(${motifRgb.silver}, 0.06) 50%,
+                      rgba(${motifRgb.deep}, 0.1) 100%
+                    )`,
+                    border: `1px solid rgba(${motifRgb.cream}, 0.22)`,
+                    boxShadow: `inset 0 1px 24px rgba(${motifRgb.cream}, 0.12)`,
                   }}
                 />
 
-                {/* Bold debut date number + label - centered at bottom */}
-                <div className="absolute bottom-2 inset-x-0 sm:bottom-3 flex flex-col items-center">
+                {/* Top light bloom */}
+                <div
+                  className="absolute inset-0 pointer-events-none"
+                  style={{
+                    background: `radial-gradient(
+                      ellipse 90% 55% at 50% -5%,
+                      rgba(${motifRgb.cream}, 0.35) 0%,
+                      rgba(${motifRgb.accent}, 0.12) 40%,
+                      transparent 72%
+                    )`,
+                  }}
+                />
+
+                {/* Bottom depth vignette */}
+                <div
+                  className="absolute inset-0 pointer-events-none"
+                  style={{
+                    background: `linear-gradient(
+                      to top,
+                      rgba(${motifRgb.deep}, 0.35) 0%,
+                      transparent 55%
+                    )`,
+                  }}
+                />
+
+                {/* Wedding date — centered */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center px-3 z-10">
                   <span
-                    className="text-3xl sm:text-2xl md:text-4xl lg:text-7xl font-black select-none leading-none drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)] text-center"
+                    className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black select-none leading-none text-center"
                     style={{
                       fontFamily: 'var(--font-granika), sans-serif',
                       color: 'var(--color-motif-cream)',
+                      textShadow: `0 2px 12px rgba(0,0,0,0.55), 0 0 28px rgba(${motifRgb.accent}, 0.35)`,
                     }}
                   >
                     {countdownNumbers[i]}
                   </span>
-                  <span className="text-[8px] sm:text-[9px] tracking-widest uppercase mt-0.5 text-[rgba(255,246,248,0.85)]">
+                  <div
+                    className="w-7 sm:w-9 h-px my-1.5 sm:my-2"
+                    style={{
+                      background: `linear-gradient(
+                        90deg,
+                        transparent,
+                        rgba(${motifRgb.accent}, 0.9),
+                        transparent
+                      )`,
+                    }}
+                  />
+                  <span
+                    className="text-[9px] sm:text-[10px] md:text-xs tracking-[0.28em] uppercase"
+                    style={{
+                      color: 'var(--color-motif-cream)',
+                      opacity: 0.88,
+                      textShadow: '0 1px 6px rgba(0,0,0,0.45)',
+                    }}
+                  >
                     {countdownLabels[i]}
                   </span>
                 </div>

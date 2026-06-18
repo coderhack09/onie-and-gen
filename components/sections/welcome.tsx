@@ -15,9 +15,9 @@ const cinzel = Cinzel({
   weight: "400",
 })
 
-
-// Palette lives in globals.css → @theme inline → --color-motif-*
-// Edit there once to update every component.
+// Slightly darker than motif-deep for body readability on cream
+const welcomeText = "color-mix(in srgb, var(--color-motif-deep) 82%, #2A1F18)"
+const welcomeTextMuted = "color-mix(in srgb, var(--color-motif-deep) 70%, #2A1F18)"
 
 // Corner decoration - white
 const DECO_FILTER = "brightness(0) invert(1)"
@@ -86,8 +86,8 @@ export function Welcome() {
           {/* Main heading */}
           <div className="space-y-1 sm:space-y-1.5 md:space-y-2.5">
             <p
-              className={`${cormorant.className} text-[0.65rem] sm:text-[0.7rem] md:text-xs lg:text-sm uppercase tracking-[0.24em] sm:tracking-[0.28em]`}
-              style={{ color: 'var(--color-motif-deep)' }}
+              className={`${cormorant.className} text-xs sm:text-sm md:text-base uppercase tracking-[0.24em] sm:tracking-[0.28em]`}
+              style={{ color: welcomeText }}
             >
               {siteConfig.couple.groomNickname} &amp; {siteConfig.couple.brideNickname}
             </p>
@@ -95,8 +95,8 @@ export function Welcome() {
               className="leading-none"
                style={{
                 fontFamily: "var(--font-playlist-script), cursive",
-                fontSize: "clamp(2rem, 9vw, 4.5rem)",
-                color: "var(--color-motif-deep)",
+                fontSize: "clamp(2.25rem, 9.5vw, 4.75rem)",
+                color: welcomeText,
                 letterSpacing: "0.01em",  
               }}
             >
@@ -107,12 +107,12 @@ export function Welcome() {
             {/* Verse */}
             <div className="space-y-0.5 sm:space-y-1">
               <p
-                className={`${cormorant.className} text-[0.7rem] sm:text-xs md:text-sm lg:text-base italic leading-relaxed`}
-                style={{ color: 'var(--color-motif-deep)', opacity: 0.9 }}
+                className={`${cormorant.className} text-xs sm:text-sm md:text-base lg:text-lg italic leading-relaxed`}
+                style={{ color: welcomeTextMuted }}
               >
                 &quot;I have found the one whom my soul loves.&quot;
               </p>
-              <p className={`${cormorant.className} text-[0.7rem] sm:text-xs md:text-sm lg:text-base italic leading-relaxed`} style={{ color: 'var(--color-motif-deep)', opacity: 0.9 }}>Song of Solomon 3:4</p>
+              <p className={`${cormorant.className} text-xs sm:text-sm md:text-base lg:text-lg italic leading-relaxed`} style={{ color: welcomeTextMuted }}>Song of Solomon 3:4</p>
 
             </div>
 
@@ -126,8 +126,8 @@ export function Welcome() {
 
           {/* Body text */}
           <div
-            className={`${cormorant.className} text-[0.75rem] sm:text-[0.85rem] md:text-sm lg:text-base leading-relaxed sm:leading-6 md:leading-7 space-y-2.5 sm:space-y-3 md:space-y-4`}
-            style={{ color: 'var(--color-motif-deep)' }}
+            className={`${cormorant.className} text-sm sm:text-base md:text-lg leading-relaxed sm:leading-7 md:leading-8 space-y-2.5 sm:space-y-3 md:space-y-4`}
+            style={{ color: welcomeText }}
           >
             <p>
             With hearts full of gratitude and joy, we invite you to share in one of the most sacred and meaningful days of our lives.
@@ -154,12 +154,12 @@ export function Welcome() {
 
               <div className="mx-auto max-w-md rounded-xl sm:rounded-2xl border border-motif-accent/25 bg-white/55 px-4 py-4 sm:px-6 sm:py-5 shadow-[0_4px_20px_rgba(91,102,85,0.06)]">
                 <p
-                  className={`${cormorant.className} text-[0.65rem] sm:text-xs uppercase tracking-[0.22em] sm:tracking-[0.26em] mb-2 sm:mb-2.5`}
-                  style={{ color: "var(--color-motif-deep)", opacity: 0.75 }}
+                  className={`${cormorant.className} text-xs sm:text-sm uppercase tracking-[0.22em] sm:tracking-[0.26em] mb-2 sm:mb-2.5`}
+                  style={{ color: welcomeTextMuted }}
                 >
                   Share in our joy
                 </p>
-                <p className="text-[0.75rem] sm:text-sm md:text-base leading-relaxed mb-3 sm:mb-3.5">
+                <p className="text-sm sm:text-base md:text-lg leading-relaxed mb-3 sm:mb-3.5">
                   As you celebrate with us, please use our official hashtag when posting your photos and memories.
                 </p>
                 <p
@@ -172,14 +172,14 @@ export function Welcome() {
 
               <div className="space-y-1.5 sm:space-y-2 pt-1">
                 <p
-                  className={`${cormorant.className} italic text-[0.8rem] sm:text-sm md:text-base`}
-                  style={{ color: "var(--color-motif-deep)", opacity: 0.88 }}
+                  className={`${cormorant.className} italic text-sm sm:text-base md:text-lg`}
+                  style={{ color: welcomeTextMuted }}
                 >
                   With all our love,
                 </p>
                 <p
                   className={`${cinzel.className} text-xl sm:text-2xl md:text-3xl tracking-[0.1em] sm:tracking-[0.14em]`}
-                  style={{ color: "var(--color-motif-deep)" }}
+                  style={{ color: welcomeText }}
                 >
                   {groomName} &amp; {brideName}
                 </p>

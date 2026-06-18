@@ -44,7 +44,7 @@ const desktopImages: string[] = [
   '/desktop-background/couple (5).png',
 ];
 
-const MOBILE_BACKGROUND = '/mobile-background/couple (22).png';
+const MOBILE_BACKGROUND = '/decoration/Screenshot 2026-06-18 215051.png';
 
 export const Hero: React.FC<HeroProps> = ({ onOpen, visible }) => {
   const siteConfig = useSiteConfig();
@@ -137,46 +137,6 @@ export const Hero: React.FC<HeroProps> = ({ onOpen, visible }) => {
             </div>
           ))
         )}
-        
-        {/* Top warm veil — deep warm brown fades into champagne gold, then clears */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background: `linear-gradient(
-              to bottom,
-              rgba(${hex.deep}, 0.28) 0%,
-              rgba(${hex.accent}, 0.12) 35%,
-              transparent 60%
-            )`
-          }}
-        />
-
-        {/* Bottom ivory lift — cream rises from below to keep text legible */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background: `linear-gradient(
-              to top,
-              rgba(${hex.deep}, 0.58) 0%,
-              rgba(${hex.medium}, 0.32) 30%,
-              rgba(${hex.deep}, 0.12) 55%,
-              transparent 70%
-            )`
-          }}
-        />
-
-        {/* Vignette — warm-beige edges draw the eye to the centre */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background: `radial-gradient(
-              ellipse at center,
-              transparent 40%,
-              rgba(${hex.medium}, 0.15) 70%,
-              rgba(${hex.deep}, 0.24) 100%
-            )`
-          }}
-        />
       </div>
 
       {/* Content Container */}

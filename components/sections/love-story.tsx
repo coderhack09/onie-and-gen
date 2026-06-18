@@ -17,18 +17,19 @@ const cormorant = Cormorant_Garamond({
   style: ["normal", "italic"],
 })
 
-// Palette lives in globals.css → @theme inline → --color-motif-*
-// Edit there once to update every component.
+// Slightly darker than motif tokens for readability on cream
+const storyText = "color-mix(in srgb, var(--color-motif-deep) 82%, #2A1F18)"
+const storyTextMuted = "color-mix(in srgb, var(--color-motif-deep) 70%, #2A1F18)"
 
 export function LoveStory() {
   return (
     <div className="min-h-screen bg-motif-cream overflow-x-hidden">
 
-      <div className="text-center z-0 relative px-6 pt-14 sm:pt-18 md:pt-20 pb-4">
+      <div className="text-center z-0 relative px-5 sm:px-6 pt-14 sm:pt-18 md:pt-20 pb-6 sm:pb-8">
         {/* Eyebrow label */}
         <p
-          className={`${cinzel.className} text-[0.55rem] sm:text-[0.6rem] tracking-[0.45em] uppercase mb-4 sm:mb-5`}
-          style={{ color: 'var(--color-motif-medium)', letterSpacing: '0.42em' }}
+          className={`${cinzel.className} text-xs sm:text-sm tracking-[0.45em] uppercase mb-4 sm:mb-5`}
+          style={{ color: storyTextMuted, letterSpacing: '0.42em' }}
         >
           Our Story
         </p>
@@ -38,8 +39,8 @@ export function LoveStory() {
           className="text-[34px] sm:text-[42px] md:text-[52px] lg:text-[60px] xl:text-[68px] leading-[1.15] mb-3 sm:mb-4"
           style={{
             fontFamily: "var(--font-brittany), cursive",
-            color: 'var(--color-motif-deep)',
-            textShadow: '0 2px 12px rgba(166,132,106,0.22), 0 1px 0 rgba(166,132,106,0.08)',
+            color: storyText,
+            textShadow: '0 2px 12px rgba(42,31,24,0.18), 0 1px 0 rgba(42,31,24,0.06)',
           }}
         >
           A Love Story Anchored in Grace
@@ -50,8 +51,8 @@ export function LoveStory() {
 
         {/* Sub-tagline — Cormorant italic */}
         <p
-          className={`${cormorant.className} text-[1rem] sm:text-[1.1rem] md:text-[1.2rem] font-light leading-relaxed mb-2`}
-          style={{ color: 'var(--color-motif-medium)', fontStyle: 'italic', letterSpacing: '0.03em' }}
+          className={`${cormorant.className} max-w-2xl mx-auto text-[1.05rem] sm:text-lg md:text-xl font-normal leading-relaxed mb-2 px-1`}
+          style={{ color: storyTextMuted, fontStyle: 'italic', letterSpacing: '0.03em' }}
         >
           A journey of faith, healing, and a love shaped by God&apos;s perfect timing.
         </p>
@@ -135,7 +136,7 @@ export function LoveStory() {
             <StorySection
         theme="dark"
         layout="image-right"
-        imageSrc="/frontboxes/couple (1).jpg"
+        imageSrc="/decoration/box 1.png"
         title="HELD TOGETHER BY GRACE"
         text={
           <>
@@ -189,7 +190,7 @@ and every promise is fulfilled according to His will.
         <div className="w-12 sm:w-16 h-[1px] bg-motif-silver mx-auto mb-4 sm:mb-6 opacity-60"></div>
         <Link 
           href="#guest-list"
-          className={`${cinzel.className} group relative inline-flex items-center justify-center px-6 sm:px-8 md:px-10 py-2.5 sm:py-3 md:py-3.5 text-[0.7rem] sm:text-xs md:text-sm tracking-[0.2em] sm:tracking-[0.3em] uppercase font-normal text-motif-cream bg-motif-deep rounded-sm border border-motif-deep transition-all duration-300 hover:bg-motif-accent hover:border-motif-accent hover:text-motif-cream hover:-translate-y-0.5 active:translate-y-0 shadow-sm hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-motif-soft/50 focus-visible:ring-offset-2 focus-visible:ring-offset-motif-cream`}
+          className={`${cinzel.className} group relative inline-flex items-center justify-center px-6 sm:px-8 md:px-10 py-2.5 sm:py-3 md:py-3.5 text-xs sm:text-sm md:text-base tracking-[0.2em] sm:tracking-[0.3em] uppercase font-normal text-motif-cream bg-motif-deep rounded-sm border border-motif-deep transition-all duration-300 hover:bg-motif-accent hover:border-motif-accent hover:text-motif-cream hover:-translate-y-0.5 active:translate-y-0 shadow-sm hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-motif-soft/50 focus-visible:ring-offset-2 focus-visible:ring-offset-motif-cream`}
         >
           <span className="relative z-10">Join us</span>
           {/* Subtle glow effect on hover */}

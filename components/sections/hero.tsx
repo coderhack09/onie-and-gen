@@ -14,8 +14,9 @@ import { siteConfig } from "@/content/site"
 // --champagne-light: #F2E4D3;
 
 const palette = {
-  deepBrown: "#4E3B31",   // primary text, strong accents
-  mediumBrown: "#8B6F5A", // secondary text, borders
+  deepBrown: "#1F1612",   // primary text, strong accents
+  mediumBrown: "#3D2E25", // secondary text, borders
+  nameBrown: "#4E3B31",   // couple names — warm light brown
   sageGold: "#A2976A",   // subtle accents, dividers
   cream: "#F5EFE6", // background, soft surfaces
   terracotta: "#8F553D", // CTAs, highlights
@@ -127,10 +128,13 @@ export function Hero() {
         >
           {/* Invitation line — refined copy */}
           <p
-            className={`${cinzel.className} text-sm sm:text-base uppercase tracking-[0.28em] sm:tracking-[0.32em] font-light`}
+            className={`${cinzel.className} text-sm sm:text-base uppercase tracking-[0.28em] sm:tracking-[0.32em] font-normal`}
             style={{ color: palette.deepBrown }}
           >
-            WITH GRATEFUL HEARTS, TOGETHER WITH OUR FAMILIES, WE WARMLY INVITE YOU  TO CELEBRATE WITH US AS WE SAY “I DO”
+            WITH GRATEFUL HEARTS, TOGETHER WITH OUR FAMILIES, WE WARMLY INVITE YOU TO CELEBRATE WITH US AS WE SAY
+            <span className="block mt-1 sm:mt-1.5 tracking-[0.32em] sm:tracking-[0.36em]">
+              &ldquo;I DO&rdquo;
+            </span>
           </p>
 
           <div className="flex items-center justify-center gap-3 sm:gap-4 my-6 sm:my-8" aria-hidden>
@@ -153,7 +157,7 @@ export function Hero() {
           {/* Couple names — hero focal point */}
           <h1
             className={`${cinzel.className} text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl uppercase tracking-[0.14em] sm:tracking-[0.18em] font-normal leading-tight`}
-            style={{ color: palette.deepBrown }}
+            style={{ color: palette.nameBrown }}
           >
             <span className="block">
               <span className="inline-block align-baseline text-[clamp(3.25rem,7vw,4.75rem)] leading-none">
@@ -206,7 +210,7 @@ export function Hero() {
           <div className="mt-10 sm:mt-12">
             <a
               href="#rsvp"
-              className={`${cinzel.className} inline-block px-10 sm:px-14 py-3.5 sm:py-4 text-xs sm:text-sm uppercase tracking-[0.22em] rounded-sm border-2 border-[#D6BFA3] bg-[#D6BFA3] text-[#4E3B31] shadow-[0_4px_14px_rgba(78,59,49,0.15)] transition-all duration-300 hover:border-[#4E3B31] hover:bg-[#4E3B31] hover:text-[#F5EFE6] hover:-translate-y-px hover:shadow-[0_6px_20px_rgba(78,59,49,0.21)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4E3B31]/50 focus-visible:ring-offset-4 focus-visible:ring-offset-[#F5EFE6]`}
+              className={`${cinzel.className} inline-block px-10 sm:px-14 py-3.5 sm:py-4 text-xs sm:text-sm uppercase tracking-[0.22em] rounded-sm border-2 border-[#D6BFA3] bg-[#D6BFA3] text-[#1F1612] shadow-[0_4px_14px_rgba(31,22,18,0.15)] transition-all duration-300 hover:border-[#1F1612] hover:bg-[#1F1612] hover:text-[#F5EFE6] hover:-translate-y-px hover:shadow-[0_6px_20px_rgba(31,22,18,0.21)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1F1612]/50 focus-visible:ring-offset-4 focus-visible:ring-offset-[#F5EFE6]`}
             >
               Confirm your attendance (RSVP)
             </a>
