@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSiteConfig } from '@/hooks/use-site-config';
 import Image from 'next/image';
 
@@ -44,12 +44,7 @@ const desktopImages: string[] = [
   '/desktop-background/couple (5).png',
 ];
 
-const mobileImages: string[] = [
-'/mobile-background/couple (22).png',
-'/frontboxes/phone.jpg',
-'/mobile-background/couple (22).png',
-'/frontboxes/phone.jpg',
-];
+const MOBILE_BACKGROUND = '/mobile-background/couple (22).png';
 
 export const Hero: React.FC<HeroProps> = ({ onOpen, visible }) => {
   const siteConfig = useSiteConfig();
@@ -70,12 +65,12 @@ export const Hero: React.FC<HeroProps> = ({ onOpen, visible }) => {
   }, []);
 
   useEffect(() => {
-    if (!mounted) return;
+    if (!mounted || isMobile) return;
     const timer = setInterval(() => {
-      setIndex((prev) => (prev + 1) % 5);
+      setIndex((prev) => (prev + 1) % desktopImages.length);
     }, 5500);
     return () => clearInterval(timer);
-  }, [mounted]);
+  }, [mounted, isMobile]);
 
   useEffect(() => {
     if (visible) {
@@ -104,32 +99,44 @@ export const Hero: React.FC<HeroProps> = ({ onOpen, visible }) => {
     };
   }, []);
 
-  const images = useMemo(() => (isMobile ? mobileImages : desktopImages), [isMobile]);
-
   return (
       <div className={`fixed inset-0 z-30 flex items-center justify-center overflow-hidden transition-opacity duration-500 ${visible ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'}`}>
-      {/* Background Image Carousel */}
+      {/* Background */}
       <div className="absolute inset-0 z-0">
-        {images.map((src, i) => (
-          <div
-            key={src}
-            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${i === index ? 'opacity-100' : 'opacity-0'}`}
-            style={{
-              transform: i === index ? 'scale(1)' : 'scale(1.05)',
-              transition: 'opacity 1s ease-in-out, transform 1s ease-in-out'
-            }}
-          >
+        {isMobile ? (
+          <div className="absolute inset-0">
             <Image
-              src={src}
+              src={MOBILE_BACKGROUND}
               alt="Couple"
               fill
               quality={90}
-              priority={i === 0}
+              priority
               className="object-cover"
               sizes="100vw"
             />
           </div>
-        ))}
+        ) : (
+          desktopImages.map((src, i) => (
+            <div
+              key={src}
+              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${i === index ? 'opacity-100' : 'opacity-0'}`}
+              style={{
+                transform: i === index ? 'scale(1)' : 'scale(1.05)',
+                transition: 'opacity 1s ease-in-out, transform 1s ease-in-out',
+              }}
+            >
+              <Image
+                src={src}
+                alt="Couple"
+                fill
+                quality={90}
+                priority={i === 0}
+                className="object-cover"
+                sizes="100vw"
+              />
+            </div>
+          ))
+        )}
         
         {/* Top warm veil — deep warm brown fades into champagne gold, then clears */}
         <div
@@ -137,8 +144,8 @@ export const Hero: React.FC<HeroProps> = ({ onOpen, visible }) => {
           style={{
             background: `linear-gradient(
               to bottom,
-              rgba(${hex.deep}, 0.15) 0%,
-              rgba(${hex.accent}, 0.06) 35%,
+              rgba(${hex.deep}, 0.28) 0%,
+              rgba(${hex.accent}, 0.12) 35%,
               transparent 60%
             )`
           }}
@@ -150,9 +157,9 @@ export const Hero: React.FC<HeroProps> = ({ onOpen, visible }) => {
           style={{
             background: `linear-gradient(
               to top,
-              rgba(${hex.deep}, 0.45) 0%,
-              rgba(${hex.medium}, 0.20) 30%,
-              rgba(${hex.deep}, 0.05) 55%,
+              rgba(${hex.deep}, 0.58) 0%,
+              rgba(${hex.medium}, 0.32) 30%,
+              rgba(${hex.deep}, 0.12) 55%,
               transparent 70%
             )`
           }}
@@ -165,8 +172,8 @@ export const Hero: React.FC<HeroProps> = ({ onOpen, visible }) => {
             background: `radial-gradient(
               ellipse at center,
               transparent 40%,
-              rgba(${hex.medium}, 0.09) 70%,
-              rgba(${hex.deep}, 0.16) 100%
+              rgba(${hex.medium}, 0.15) 70%,
+              rgba(${hex.deep}, 0.24) 100%
             )`
           }}
         />
