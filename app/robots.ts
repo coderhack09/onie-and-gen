@@ -13,6 +13,6 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
       },
     ],
-    sitemap: "https://cristie-and-mark.weddinginvitationrsvp.com/sitemap.xml",
+    sitemap: "https://onie-and-gen.weddinginvitationrsvp.com/sitemap.xml",
   }
 }

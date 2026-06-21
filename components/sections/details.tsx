@@ -201,7 +201,7 @@ export function Details() {
           Event Details
         </h2>
         <p
-          className={`${cinzel.className} text-base sm:text-lg md:text-xl font-normal max-w-xl mx-auto leading-relaxed tracking-[0.12em] px-4`}
+          className={`${cinzel.className} text-base sm:text-lg md:text-xl font-normal max-w-xl mx-auto leading-relaxed tracking-[0.12em] px-4 mt-4 sm:mt-5 md:mt-6`}
           style={{ color: detailsTextMuted }}
         >
           Everything you need to know about our special day.
@@ -508,7 +508,7 @@ export function Details() {
     
 
         {/* Section Header */}
-        <div className="text-center mb-8 sm:mb-10 md:mb-12">
+        <div className="relative z-10 text-center mb-8 sm:mb-10 md:mb-12 mt-10 sm:mt-14 md:mt-20 px-4 sm:px-6">
           <div className="flex items-center justify-center gap-3 sm:gap-4 mb-4 sm:mb-5">
             <div className="h-px w-10 sm:w-14 md:w-20 bg-motif-silver/60" />
             <Shirt className="w-5 h-5 sm:w-6 sm:h-6 text-motif-silver" />

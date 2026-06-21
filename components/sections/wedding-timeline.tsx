@@ -300,8 +300,8 @@ function TimelineText({
       </p>
       <p
         className={`${cormorant.className} ${
-          mobile ? "text-[0.75rem]" : "text-sm lg:text-base"
-        } mt-0.5 opacity-95 drop-shadow-sm`}
+          mobile ? "text-sm sm:text-base" : "text-base sm:text-lg lg:text-xl"
+        } mt-0.5 font-medium opacity-95 drop-shadow-sm`}
         style={{ color: TIMELINE_TEXT }}
       >
         at {event.time}

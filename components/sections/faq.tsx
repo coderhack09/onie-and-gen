@@ -96,7 +96,7 @@ function getFaqItems(siteConfig: SiteConfig): FAQItem[] {
         >
           {siteConfig.couple.groom}
         </a>{" "}
-        on Messenger. or contact us at {siteConfig.details.rsvp.phone}.
+        on Messenger. or contact us at {siteConfig.details.rsvp.phone} or {siteConfig.details.rsvp.phone2}.
       </>
     ),
   },

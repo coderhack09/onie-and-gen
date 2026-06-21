@@ -43,7 +43,8 @@ export const siteConfig = {
     rsvp: {
       deadline: "June 20, 2026",
       contact: "Genevive P. Grilla ",
-      phone: "+63 956 799 3127",
+      phone: "+63 9275325702",
+      phone2: "+63 9946089153",
     },
   },
   contact: {
