@@ -13,8 +13,12 @@ import {
   Link2,
   Crown,
   Users,
+  Share2,
+  ImageIcon,
 } from "lucide-react"
 import { useSiteConfig } from "@/hooks/use-site-config"
+import { OG_IMAGE_PATH } from "@/lib/og-image"
+import { getProposalLink } from "@/lib/site-url"
 import {
   PROPOSAL_ROLES,
   PROPOSAL_ENTOURAGE_ROLE_SLOTS,
@@ -58,20 +62,40 @@ export function ProposalDashboard() {
   >(null)
   const [inviteeName, setInviteeName] = useState("")
   const [copiedInviteText, setCopiedInviteText] = useState(false)
+  const [copyError, setCopyError] = useState<string | null>(null)
+  const [canNativeShare, setCanNativeShare] = useState(false)
 
-  const getProposalLink = (roleId: string) => {
-    if (typeof window !== "undefined") {
-      return `${window.location.origin}/will-you-be-proposal/${roleId}`
+  const copyToClipboard = async (text: string) => {
+    setCopyError(null)
+    try {
+      await navigator.clipboard.writeText(text)
+      return true
+    } catch {
+      try {
+        const textarea = document.createElement("textarea")
+        textarea.value = text
+        textarea.setAttribute("readonly", "")
+        textarea.style.position = "fixed"
+        textarea.style.opacity = "0"
+        document.body.appendChild(textarea)
+        textarea.select()
+        const ok = document.execCommand("copy")
+        document.body.removeChild(textarea)
+        if (!ok) throw new Error("copy failed")
+        return true
+      } catch {
+        setCopyError("Could not copy — please select and copy manually.")
+        return false
+      }
     }
-    return `/will-you-be-proposal/${roleId}`
   }
 
-  const handleCopyLink = (roleId: string) => {
-    const link = getProposalLink(roleId)
-    navigator.clipboard.writeText(link).then(() => {
+  const handleCopyLink = async (roleId: string) => {
+    const ok = await copyToClipboard(getProposalLink(roleId))
+    if (ok) {
       setCopiedRoleId(roleId)
       setTimeout(() => setCopiedRoleId(null), 2500)
-    })
+    }
   }
 
   const openInviteModal = (role: (typeof PROPOSAL_ROLES)[number]) => {
@@ -86,23 +110,48 @@ export function ProposalDashboard() {
     setCopiedInviteText(false)
   }
 
-  const getInviteMessage = () => {
-    if (!selectedInviteRole) return ""
-    const namePrefix = inviteeName.trim() ? `Hi ${inviteeName.trim()}! ` : "Hi! "
-    const roleSingular = getRoleSingular(selectedInviteRole.title)
-    const url = getProposalLink(selectedInviteRole.id)
+  const buildInviteMessage = (
+    role: (typeof PROPOSAL_ROLES)[number],
+    recipientName = inviteeName
+  ) => {
+    const namePrefix = recipientName.trim() ? `Hi ${recipientName.trim()}! ` : "Hi! "
+    const roleSingular = getRoleSingular(role.title)
+    const url = getProposalLink(role.id)
     const groom = siteConfig.couple.groomNickname
     const bride = siteConfig.couple.brideNickname
     const date = siteConfig.wedding.date
 
-    return `${namePrefix}${groom} and ${bride} are getting married on ${date}! 💍\n\nBecause you are such a wonderful model of love, laughter, and support, they would be absolutely honored if you would stand by their side as their ${roleSingular}.\n\nRead their formal proposal here and let them know your thoughts:\n👉 ${url}`
+    return `${namePrefix}${groom} and ${bride} are getting married on ${date}! 💍\n\nBecause you are such a wonderful model of love, laughter, and support, they would be absolutely honored if you would stand by their side as their ${roleSingular}.\n\nRead their formal proposal here and let them know your thoughts:\n${url}`
   }
 
-  const handleCopyInviteText = () => {
-    navigator.clipboard.writeText(getInviteMessage()).then(() => {
+  const getInviteMessage = () => {
+    if (!selectedInviteRole) return ""
+    return buildInviteMessage(selectedInviteRole)
+  }
+
+  const handleCopyInviteText = async () => {
+    const ok = await copyToClipboard(getInviteMessage())
+    if (ok) {
       setCopiedInviteText(true)
       setTimeout(() => setCopiedInviteText(false), 2500)
-    })
+    }
+  }
+
+  const handleNativeShare = async (role: (typeof PROPOSAL_ROLES)[number]) => {
+    if (!navigator.share) return
+    setCopyError(null)
+    const url = getProposalLink(role.id)
+    const message = buildInviteMessage(role)
+    try {
+      await navigator.share({
+        title: `Will you be our ${getRoleSingular(role.title)}?`,
+        text: message.replace(url, "").trim(),
+        url,
+      })
+    } catch (error) {
+      if (error instanceof DOMException && error.name === "AbortError") return
+      setCopyError("Share failed — try copying the link instead.")
+    }
   }
 
   const fetchSheetCounts = async () => {
@@ -131,6 +180,7 @@ export function ProposalDashboard() {
 
   useEffect(() => {
     fetchSheetCounts()
+    setCanNativeShare(typeof navigator !== "undefined" && typeof navigator.share === "function")
 
     const handleEntourageUpdate = () => {
       setTimeout(fetchSheetCounts, 1000)
@@ -214,6 +264,43 @@ export function ProposalDashboard() {
         </div>
       </div>
 
+      <div className="flex flex-col gap-2 rounded-xl border border-[#E5E7EB] bg-[#FFFBF7] px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex items-start gap-3">
+          <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#A67C52]/10 text-[#8B6F47]">
+            <ImageIcon className="h-4 w-4" />
+          </div>
+          <div>
+            <p className="text-xs font-semibold text-[#6B4423]">Link preview on Messenger &amp; Viber</p>
+            <p className="mt-0.5 text-xs leading-relaxed text-[#6B7280]">
+              Shared links include a preview image. Links always use your live site URL — not localhost.
+              If a preview is missing after deploy, refresh it in the{" "}
+              <a
+                href="https://developers.facebook.com/tools/debug/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-medium text-[#8B6F47] underline underline-offset-2 hover:text-[#6B4423]"
+              >
+                Facebook Sharing Debugger
+              </a>
+              .
+            </p>
+          </div>
+        </div>
+        <img
+          src={OG_IMAGE_PATH}
+          alt="Link preview thumbnail"
+          width={120}
+          height={63}
+          className="hidden shrink-0 rounded-md border border-[#E5E7EB] object-cover sm:block"
+        />
+      </div>
+
+      {copyError && (
+        <p className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-xs text-red-700">
+          {copyError}
+        </p>
+      )}
+
       {/* Filters */}
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex flex-wrap gap-2">
@@ -292,6 +379,16 @@ export function ProposalDashboard() {
                     {isCopied ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
                     {isCopied ? "Copied!" : "Copy Link"}
                   </button>
+
+                  {canNativeShare && (
+                    <button
+                      onClick={() => handleNativeShare(role)}
+                      className="cursor-pointer rounded-lg border border-[#E5E7EB] bg-white p-2.5 text-[#6B7280] transition-all hover:bg-[#F9FAFB] hover:text-[#6B4423]"
+                      title="Share link"
+                    >
+                      <Share2 className="h-4 w-4" />
+                    </button>
+                  )}
 
                   <button
                     onClick={() => openInviteModal(role)}
@@ -372,6 +469,18 @@ export function ProposalDashboard() {
                 <p className="mt-1 break-all font-mono text-xs text-[#6B7280]">
                   {getProposalLink(selectedInviteRole.id)}
                 </p>
+                <div className="mt-3 flex items-center gap-3 rounded-lg border border-[#E5E7EB] bg-white p-2">
+                  <img
+                    src={OG_IMAGE_PATH}
+                    alt="Messenger link preview"
+                    width={96}
+                    height={50}
+                    className="rounded border border-[#F3F4F6] object-cover"
+                  />
+                  <p className="text-[10px] leading-relaxed text-[#9CA3AF]">
+                    This image appears when the link is pasted in Messenger, Viber, or iMessage.
+                  </p>
+                </div>
               </div>
             )}
           </div>
@@ -384,18 +493,30 @@ export function ProposalDashboard() {
             >
               Cancel
             </button>
-            <button
-              type="button"
-              onClick={handleCopyInviteText}
-              className="flex cursor-pointer items-center gap-2 rounded-lg border border-[#A67C52] bg-[#A67C52] px-5 py-2.5 text-xs font-semibold tracking-wide text-white uppercase transition-all hover:bg-[#8B6F47]"
-            >
-              {copiedInviteText ? (
-                <Check className="h-3.5 w-3.5" />
-              ) : (
-                <Copy className="h-3.5 w-3.5" />
+            <div className="flex flex-wrap items-center gap-2">
+              {canNativeShare && selectedInviteRole && (
+                <button
+                  type="button"
+                  onClick={() => handleNativeShare(selectedInviteRole)}
+                  className="flex cursor-pointer items-center gap-2 rounded-lg border border-[#E5E7EB] bg-white px-4 py-2.5 text-xs font-semibold tracking-wide text-[#6B4423] uppercase transition-all hover:bg-[#FFF8F0]"
+                >
+                  <Share2 className="h-3.5 w-3.5" />
+                  Share
+                </button>
               )}
-              {copiedInviteText ? "Copied!" : "Copy Message"}
-            </button>
+              <button
+                type="button"
+                onClick={handleCopyInviteText}
+                className="flex cursor-pointer items-center gap-2 rounded-lg border border-[#A67C52] bg-[#A67C52] px-5 py-2.5 text-xs font-semibold tracking-wide text-white uppercase transition-all hover:bg-[#8B6F47]"
+              >
+                {copiedInviteText ? (
+                  <Check className="h-3.5 w-3.5" />
+                ) : (
+                  <Copy className="h-3.5 w-3.5" />
+                )}
+                {copiedInviteText ? "Copied!" : "Copy Message"}
+              </button>
+            </div>
           </DialogFooter>
         </DialogContent>
       </Dialog>
