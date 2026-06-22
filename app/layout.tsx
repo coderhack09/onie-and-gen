@@ -9,17 +9,15 @@ import { ClientLayout } from "@/components/client-layout"
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://onie-and-gen.weddinginvitationrsvp.com/"
 const canonicalUrl = siteUrl.replace(/\/$/, "")
-  const desktopHero = "/Details/linknewPreview.png"
+const desktopHero = "/Details/linknewPreview.png"
 const mobileHero = "/Details/linknewPreview.png"
-const eventImageUrl = `${canonicalUrl}${desktopHero}`
 
-// Hardcoded Cloudinary URL — image is already uploaded and always accessible via CDN.
-// f_jpg forces JPEG so all OG scrapers (iMessage, Viber, Facebook, etc.) can display it.
-// The public-folder URL is kept only as a fallback in the images array below.
-//https://res.cloudinary.com/dlkznubkj/image/upload/v1776167457/wedding-projects/arra-and-robert/Details/PreviewLink.jpg
-// const OG_IMAGE_CLOUDINARY =
-//     "https://res.cloudinary.com/dlkznubkj/image/upload/v1777281742/wedding-projects/ken-and-ely/Details/newLinkPreview.png"
-const OG_IMAGE_FALLBACK = `${canonicalUrl}${desktopHero}`
+// JPEG at 1200×630 — preferred by Messenger, iMessage, Viber, and Facebook scrapers.
+const OG_IMAGE_PATH = "/Details/linkPreview.jpg"
+const OG_IMAGE_WIDTH = 1200
+const OG_IMAGE_HEIGHT = 630
+const OG_IMAGE_URL = `${canonicalUrl}${OG_IMAGE_PATH}`
+const OG_IMAGE_ALT = `${siteConfig.couple.groomNickname} & ${siteConfig.couple.brideNickname} Wedding Invitation - ${siteConfig.wedding.date}`
 
 const coupleNames = `${siteConfig.couple.groomNickname} & ${siteConfig.couple.brideNickname}`
 const eventTitle = `${coupleNames} - Wedding Invitation`
@@ -57,7 +55,7 @@ const jsonLd = {
       },
     },
   ],
-  image: [OG_IMAGE_FALLBACK],
+  image: [OG_IMAGE_URL],
   description:
     `You're invited to celebrate the wedding of ${siteConfig.couple.groomNickname} & ${siteConfig.couple.brideNickname}. Discover ceremony and reception details, RSVP, and explore their story.`,
   organizer: {
@@ -131,20 +129,12 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: OG_IMAGE_FALLBACK,
-        secureUrl: OG_IMAGE_FALLBACK,
-        width: 1200,
-        height: 630,
+        url: OG_IMAGE_URL,
+        secureUrl: OG_IMAGE_URL,
+        width: OG_IMAGE_WIDTH,
+        height: OG_IMAGE_HEIGHT,
         type: "image/jpeg",
-        alt: `${coupleNames} Wedding Invitation - ${siteConfig.wedding.date}`,
-      },
-      {
-        url: OG_IMAGE_FALLBACK,
-        secureUrl: OG_IMAGE_FALLBACK,
-        width: 1200,
-        height: 630,
-        type: "image/png",
-        alt: `${coupleNames} Wedding Invitation - ${siteConfig.wedding.date}`,
+        alt: OG_IMAGE_ALT,
       },
     ],
   },
@@ -153,7 +143,7 @@ export const metadata: Metadata = {
     title: `${coupleNames} Wedding Invitation`,
     description:
       `You're invited to the wedding of ${siteConfig.couple.groomNickname} & ${siteConfig.couple.brideNickname} on ${siteConfig.wedding.date}. RSVP, explore their story, and get all the details for the big day! #${siteConfig.couple.groomNickname}And${siteConfig.couple.brideNickname}SayIDo`,
-    images: [OG_IMAGE_FALLBACK, eventImageUrl ],
+    images: [OG_IMAGE_URL],
     creator: `@${siteConfig.couple.groomNickname}And${siteConfig.couple.brideNickname}`,
     site: `@${siteConfig.couple.groomNickname}And${siteConfig.couple.brideNickname}`,
   },
@@ -195,6 +185,14 @@ export default function RootLayout({
         <meta name="color-scheme" content="light" />
         <meta name="theme-color" content="#D2A4A4" />
         <meta name="format-detection" content="telephone=yes,email=no,address=no" />
+        <meta property="og:image" content={OG_IMAGE_URL} />
+        <meta property="og:image:secure_url" content={OG_IMAGE_URL} />
+        <meta property="og:image:type" content="image/jpeg" />
+        <meta property="og:image:width" content={String(OG_IMAGE_WIDTH)} />
+        <meta property="og:image:height" content={String(OG_IMAGE_HEIGHT)} />
+        <meta property="og:image:alt" content={OG_IMAGE_ALT} />
+        <link rel="image_src" href={OG_IMAGE_URL} />
+        <meta name="twitter:image" content={OG_IMAGE_URL} />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap" rel="stylesheet" />

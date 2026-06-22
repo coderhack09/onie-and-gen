@@ -4,8 +4,28 @@ export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       {
-        // Explicitly allow Facebook's link-preview scraper so OG tags are readable
+        // Explicitly allow link-preview scrapers so OG tags and images are readable
         userAgent: "facebookexternalhit",
+        allow: "/",
+      },
+      {
+        userAgent: "Facebot",
+        allow: "/",
+      },
+      {
+        userAgent: "WhatsApp",
+        allow: "/",
+      },
+      {
+        userAgent: "Twitterbot",
+        allow: "/",
+      },
+      {
+        userAgent: "LinkedInBot",
+        allow: "/",
+      },
+      {
+        userAgent: "TelegramBot",
         allow: "/",
       },
       {
