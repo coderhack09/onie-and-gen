@@ -80,14 +80,14 @@ function buildTimelineEvents(siteConfig: SiteConfig): TimelineEvent[] {
   //   imageSrc: "/weddingtimeline/reception welcom.png",
   // },
   {
-    time: "6:30 PM ",
+    time: "6:00 PM ",
     title: "Early Dinner & Celebration",
     location: `${siteConfig.ceremony.location}`,
     icon: DinnerIcon,
     imageSrc: "/weddingtimeline/DinnerService.png",
   },
   {
-    time: "8:00 PM",
+    time: "7:30PM",
     title: "Closing Blessings & Fond Farewell",
     location: `${siteConfig.ceremony.location}`,
     icon: DanceIcon,

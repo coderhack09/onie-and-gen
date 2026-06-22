@@ -152,7 +152,7 @@ Now, as they prepare to say yes before God and the people they love most, Cather
     googleDriveLink:
       "https://drive.google.com/drive/folders/1Xi8R8Jq5t80bXyWBkd68su0YKIrMxZVp?usp=sharing",
     albumQR: "/QR/AlbumQR.png",
-    hashtag: ["#GenHitsOnie"],
+    hashtag: ["#GenHitsTheOnie"],
     instructions: "Please scan this QR Code and upload the photos and videos you have taken during our wedding reception. We are delighted to see your snaps too!",
   },
 }
