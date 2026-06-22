@@ -6,9 +6,9 @@ import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 import { siteConfig } from "@/content/site"
 import { ClientLayout } from "@/components/client-layout"
+import { getCanonicalSiteUrl } from "@/lib/site-url"
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://onie-and-gen.weddinginvitationrsvp.com/"
-const canonicalUrl = siteUrl.replace(/\/$/, "")
+const canonicalUrl = getCanonicalSiteUrl()
 const desktopHero = "/Details/linknewPreview.png"
 const mobileHero = "/Details/linknewPreview.png"
 

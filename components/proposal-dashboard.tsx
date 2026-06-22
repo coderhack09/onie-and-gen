@@ -18,7 +18,7 @@ import {
 } from "lucide-react"
 import { useSiteConfig } from "@/hooks/use-site-config"
 import { OG_IMAGE_PATH } from "@/lib/og-image"
-import { getProposalLink } from "@/lib/site-url"
+import { getProposalLink, PROJECT_SITE_HOST } from "@/lib/site-url"
 import {
   PROPOSAL_ROLES,
   PROPOSAL_ENTOURAGE_ROLE_SLOTS,
@@ -272,8 +272,9 @@ export function ProposalDashboard() {
           <div>
             <p className="text-xs font-semibold text-[#6B4423]">Link preview on Messenger &amp; Viber</p>
             <p className="mt-0.5 text-xs leading-relaxed text-[#6B7280]">
-              Shared links include a preview image. Links always use your live site URL — not localhost.
-              If a preview is missing after deploy, refresh it in the{" "}
+              Shared links always use{" "}
+              <span className="font-mono text-[#6B4423]">{PROJECT_SITE_HOST}</span> — not another
+              couple&apos;s domain. If a preview is missing after deploy, refresh it in the{" "}
               <a
                 href="https://developers.facebook.com/tools/debug/"
                 target="_blank"
